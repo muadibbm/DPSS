@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;DPSS&apos; to &apos;DistributedPlayerStatusSystem&apos;&#x0D;&#x0A;- Original element: &apos;DPSS&apos;&#x0D;&#x0A;- Renamed element: &apos;DPSS&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;DPSS&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=DPSS" name="DistributedPlayerStatusSystem" references="true" stamp="1391319303985" version="1.0"/>
+</session>
