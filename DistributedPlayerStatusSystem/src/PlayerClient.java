@@ -99,15 +99,15 @@ public class PlayerClient extends Thread
 	{
 		try 
 		{
-			if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 			}
-			else if(pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+			else if(pIPAddress.length() >= 2 && pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 			}
-			else if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 			}
@@ -134,15 +134,15 @@ public class PlayerClient extends Thread
 	{
 		try 
 		{
-			if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 			}
-			else if(pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+			else if(pIPAddress.length() >= 2 && pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 			}
-			else if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 			}
@@ -171,15 +171,15 @@ public class PlayerClient extends Thread
 	{
 		try 
 		{
-			if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 			}
-			else if(pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+			else if(pIPAddress.length() >= 2 && pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 			}
-			else if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 			}
@@ -271,15 +271,15 @@ public class PlayerClient extends Thread
 							System.out.print("Insert IP-address : ");
 							input = scanner.nextLine();
 							aTmpAccount.setIPAddress(input);
-							if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+							if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 							}
-							else if(input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+							else if(input.length() >= 2 && input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 							}
-							else if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+							else if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 							}
@@ -316,15 +316,15 @@ public class PlayerClient extends Thread
 							System.out.print("Insert IP-address : ");
 							input = scanner.nextLine();
 							aTmpAccount.setIPAddress(input);
-							if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+							if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 							}
-							else if(input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+							else if(input.length() >= 2 && input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 							}
-							else if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+							else if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 							}
@@ -353,15 +353,15 @@ public class PlayerClient extends Thread
 							System.out.print("Insert IP-address :");
 							input = scanner.nextLine();
 							aTmpAccount.setIPAddress(input);
-							if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+							if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 							}
-							else if(input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+							else if(input.length() >= 2 && input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 							}
-							else if(input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+							else if(input.length() >= 3 && input.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 							{
 								gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 							}

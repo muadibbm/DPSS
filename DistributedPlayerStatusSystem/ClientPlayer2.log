@@ -1,7 +1,7 @@
-Feb 04, 2014 10:59:06 AM PlayerClient createLog
+Feb 04, 2014 11:35:21 AM PlayerClient createLog
 INFO: Log file created for PlayerClient
-Feb 04, 2014 10:59:06 AM PlayerClient createPlayerAccount
+Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "John", LastName "Smith", Age "50", Username "LittleJohn", Password "xxxxxxxxxx", IP-address "132.193.150.1", Player is currently Offline
-Feb 04, 2014 10:59:06 AM PlayerClient playerSignIn
+Feb 04, 2014 11:35:22 AM PlayerClient playerSignIn
 INFO: Player Sign in : Player LittleJohn Is Now Online

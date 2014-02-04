@@ -27,6 +27,10 @@ public class PlayerClient extends Thread
 	// Main Method
 	public static void main (String [] args)
 	{
+		// ADMINISTRATOR TEST CASES
+		AdministratorClient admin1 = new AdministratorClient("ClientAdmin1");
+		AdministratorClient admin2 = new AdministratorClient("ClientAdmin2");
+		AdministratorClient admin3 = new AdministratorClient("ClientAdmin3");
 		// PLAYER TEST CASES
 		PlayerClient player1 = new PlayerClient("ClientPlayer1");
 		PlayerClient player2 = new PlayerClient("ClientPlayer2");
@@ -36,8 +40,8 @@ public class PlayerClient extends Thread
 		PlayerClient player6 = new PlayerClient("ClientPlayer6");
 		// TEST CASE 1 : createPlayerAccount
 		player1.createPlayerAccount("David", "Copperfield", 14, "David14", "DifficultPassword", "132.192.168.1");
-		player2.createPlayerAccount("John", "Smith", 50, "Player2", "xxxxxxxxxx", "132.193.150.1");
-		player3.createPlayerAccount("Sebastian", "Blood", 36, "Player3", "1234567890", "132.198.177.2");
+		player2.createPlayerAccount("John", "Smith", 50, "LittleJohn", "xxxxxxxxxx", "132.193.150.1");
+		player3.createPlayerAccount("Sebastian", "Blood", 36, "Blood36", "1234567890", "132.198.177.2");
 		player4.createPlayerAccount("Bruce", "Wayne", 34, "Batman", "DarkKnight", "93.100.100.100");
 		player5.createPlayerAccount("noFirstName", "noLastName", 34, "JokerIsAwesome", "KillDarkKnight", "182.192.168.5");
 		player6.createPlayerAccount("Clark", "Kent", 38, "Superman", "Cryptonyte", "182.192.100.1");
@@ -52,25 +56,28 @@ public class PlayerClient extends Thread
 		// TEST CASE 5 : Invalid Password
 		player1.createPlayerAccount("Sam", "Tully", 26, "smartPlayer", "p", "132.192.168.3");
 		// TEST CASE 6 : playerSignIn
-		player1.playerSignIn("Player1", "DifficultPassword", "132.192.168.1");
-		player2.playerSignIn("Player2", "xxxxxxxxxx", "132.193.150.1");
-		player3.playerSignIn("Player3", "1234567890", "132.198.177.2");
+		player1.playerSignIn("David14", "DifficultPassword", "132.192.168.1");
+		player2.playerSignIn("LittleJohn", "xxxxxxxxxx", "132.193.150.1");
+		player3.playerSignIn("Blood36", "1234567890", "132.198.177.2");
 		player4.playerSignIn("Batman", "DarkKnight", "93.100.100.100");
 		player5.playerSignIn("JokerIsAwesome", "KillDarkKnight", "182.192.168.5");
 		player6.playerSignIn("Superman", "Cryptonyte", "182.192.100.1");
 		// TEST CASE 7 : playerSignIn when player is online
-		player1.playerSignIn("Player1", "DifficultPassword", "132.192.168.1");
+		player1.playerSignIn("David14", "DifficultPassword", "132.192.168.1");
 		// TEST CASE 8 : playerSignIn when account does not exist
 		player1.playerSignIn("Somebody", "DifficultPassword", "132.192.168.1");
 		// TEST CASE 9 : playerSignOut
-		player1.playerSignOut("Player1", "132.192.168.1");
-		player2.playerSignOut("Player2", "132.193.150.1");
-		player3.playerSignOut("Player3", "132.198.177.2");
-		player4.playerSignOut("Batman", "93.100.100.100");
+		player1.playerSignOut("David14", "132.192.168.1");
+		player3.playerSignOut("Blood36", "132.198.177.2");
 		player5.playerSignOut("JokerIsAwesome", "182.192.168.5");
-		player6.playerSignOut("Superman", "182.192.100.1");
-		// TEST CASE 10 : playerSignIn
-		player1.playerSignOut("Player1", "132.192.168.1");
+		// TEST CASE 10 : getPlayerStatus
+		admin1.getPlayerStatus("Admin", "Admin", "132.192.169.20");
+		admin2.getPlayerStatus("Admin", "Admin", "93.192.169.20");
+		admin3.getPlayerStatus("Admin", "Admin", "182.192.169.20");
+		// TEST CASE 11 : playerSignOut when player is Offline
+		player1.playerSignOut("David14", "132.192.168.1");
+		// START TERMINAL
+		player1.run();
 	}
 	
 	/**
@@ -92,15 +99,15 @@ public class PlayerClient extends Thread
 	{
 		try 
 		{
-			if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 			}
-			else if(pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 			}
-			else if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+			else if(pIPAddress.length() > 3 && pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
 			{
 				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
 			}

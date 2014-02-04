@@ -99,7 +99,7 @@ public class AdministratorClient extends Thread
 					{
 						gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
 					}
-					else if(input.length() >= 2 && input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+					else if(input.length() >= 3 && input.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
 					{
 						gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
 					}
