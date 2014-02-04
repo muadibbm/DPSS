@@ -1,7 +1,7 @@
-Feb 04, 2014 9:46:49 AM PlayerClient createLog
+Feb 04, 2014 10:59:06 AM PlayerClient createLog
 INFO: Log file created for PlayerClient
-Feb 04, 2014 9:46:50 AM PlayerClient createPlayerAccount
+Feb 04, 2014 10:59:06 AM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "Clark", LastName "Kent", Age "38", Username "Superman", Password "Cryptonyte", IP-address "182.192.100.1", Player is currently Offline
-Feb 04, 2014 9:46:50 AM PlayerClient playerSignIn
+Feb 04, 2014 10:59:06 AM PlayerClient playerSignIn
 INFO: Player Sign in : Player Superman Is Now Online
