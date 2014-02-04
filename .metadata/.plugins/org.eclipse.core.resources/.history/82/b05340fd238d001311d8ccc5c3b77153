@@ -1,0 +1,13 @@
+
+public class Repository {
+
+	public static GameServerNA;
+	
+	public static void main(String[] args) 
+	{
+		GameServer GameServerNA = new GameServer("NA", "132", 1020);
+		GameServer GameServerEU = new GameServer("EU", "93", 1020);
+		GameServer GameServerAS = new GameServer("AS", "182", 1020);
+	}
+
+}

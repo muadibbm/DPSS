@@ -1,0 +1,33 @@
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public final class DPSS 
+{
+	// Determines the First part of IP addresses to be able to connect to this server
+	public static String GeoLocationOfGameServerNA = "132";
+	public static String GeoLocationOfGameServerEU = "93";
+	public static String GeoLocationOfGameServerAS = "182";
+	// The RMI Port
+	public static int RMIport = 1020; 
+	// The UDP Port
+	public static int UDPport = 6789;
+	// Player Index
+	public static int PLAYERindex;
+	
+	public static Registry registry;
+	
+	public static void main(String[] args)
+	{
+		try {
+			registry = LocateRegistry.createRegistry(DPSS.RMIport);
+		} catch (RemoteException e) {
+			System.out.println("Failed to create Registry : " + e.getMessage());
+		}
+		new GameServer("NA", DPSS.GeoLocationOfGameServerNA, DPSS.RMIport);
+		new GameServer("EU", DPSS.GeoLocationOfGameServerEU, DPSS.RMIport);
+		new GameServer("AS", DPSS.GeoLocationOfGameServerAS, DPSS.RMIport);
+		// TEST CASES
+		new PlayerClient().run();
+	}
+}

@@ -1,0 +1,10 @@
+
+public final class SystemParameters 
+{
+	// Determines the First part of IP addresses to be able to connect to this server
+	public static String GeoLocationOfGameServerNA = "132";
+	public static String GeoLocationOfGameServerEU = "93";
+	public static String GeoLocationOfGameServerAS = "182";
+	// The RMI Port
+	public static int RMIport =  
+}

@@ -1,0 +1,16 @@
+
+public class Confirmation 
+{
+	private boolean bSuccess;
+	private String aMessage;
+	
+	public boolean isSuccess()
+	{
+		return bSuccess;
+	}
+	
+	public String getMesssage()
+	{
+		return aMessage;
+	}
+}

@@ -1,0 +1,9 @@
+Feb 04, 2014 2:08:51 AM PlayerClient createLog
+INFO: Log file created for PlayerClient
+Feb 04, 2014 2:08:51 AM PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "Sebastian", LastName "Blood", Age "36", Username "Blood36", Password "1234567890", IP-address "132.198.177.2", Player is currently Offline
+Feb 04, 2014 2:08:52 AM PlayerClient playerSignIn
+INFO: Player Sign in : Player Blood36 Is Now Online
+Feb 04, 2014 2:08:52 AM PlayerClient playerSignOut
+INFO: Player Sign out : Player Blood36 Is Now Offline

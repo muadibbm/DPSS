@@ -1,0 +1,59 @@
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+/*
+ * This is the Java RMI Interface for the GameServer class
+ */
+public interface GameServerRMI extends Remote
+{
+	/**
+	 * This method when invoked from a PlayerClient create a player account with the given parameters and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return true if successful or false otherwise
+	 * @throws RemoteException
+	 */
+	public boolean createPlayerAccount(String pFirstName, String pLastName, int pAge, 
+									   String pUsername, String pPassword, String pIPAddress) throws RemoteException;
+	
+	/**
+	 * This method when invoked from a PlayerClient create a player account with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return true if successful or false otherwise
+	 * @throws RemoteException
+	 */
+	public boolean playerSignIn(String pUsername, String pPassword, String pIPAddress) throws RemoteException;
+	
+	/**
+	 * This method when invoked from a PlayerClient create a player account with the given parameters and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return true if successful or false otherwise
+	 * @throws RemoteException
+	 */
+	public boolean PlayerSignOut(String pFirstName, String pLastName, int pAge, 
+									   String pUsername, String pPassword, String pIPAddress) throws RemoteException;
+	
+	/**
+	 * This method when invoked from a PlayerClient create a player account with the given parameters and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have passowrd "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return return the number of online and off-line players on the associated server or null otherwise
+	 * @throws RemoteException
+	 */
+	public String getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress) throws RemoteException;
+}

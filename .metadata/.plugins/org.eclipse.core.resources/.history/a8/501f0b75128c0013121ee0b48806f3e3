@@ -1,0 +1,3 @@
+Distributed Player Status System (DPSS) Using Java RMI
+
+It is used by players and administrators to manage game status across multiple game servers. 

@@ -1,0 +1,101 @@
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
+import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+
+/*
+ * This is the AdministratorClient class which operates the administrator
+ * @author Mehrdad Dehdashti
+ */
+public class AdministratorClient extends Thread
+{
+	private Logger log;
+	private Scanner scanner;
+	private String input;
+	private int parameterCount = 0;
+	private GameServerRMI gameServerStub;
+	
+	// Main Method
+	public static void main (String [] args)
+	{
+		// ADMINISTRATOR TEST CASES
+		AdministratorClient admin1 = new AdministratorClient("ClientAdmin1");
+		AdministratorClient admin2 = new AdministratorClient("ClientAdmin2");
+		AdministratorClient admin3 = new AdministratorClient("ClientAdmin3");
+		// TEST CASE 1 : getPlayerStatus
+		admin1.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress)
+		
+	}
+	
+	/**
+	 * This method is used for running test cases
+	 */
+	public AdministratorClient (String pName)
+	{
+		this.setName(pName);
+		scanner = new Scanner(System.in);
+		createLog();
+		System.setSecurityManager(new RMISecurityManager());
+	}
+	
+	/**
+	 * Manual invocation of GameServer operation getPlayerStatus used for test cases 
+	 */
+	public void getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress)
+	{
+		try 
+		{
+			if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerNA))
+			{
+				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/NA");
+			}
+			else if(pIPAddress.substring(0,2).equals(DPSS.GeoLocationOfGameServerEU))
+			{
+				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/EU");
+			}
+			else if(pIPAddress.substring(0,3).equals(DPSS.GeoLocationOfGameServerAS))
+			{
+				gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+DPSS.RMIport+"/AS");
+			}
+			else
+			{
+				log.info("Invalid GeoLocation");
+				return;
+			}
+			log.info(gameServerStub.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress));
+		} catch (MalformedURLException e) {
+			System.out.println("MalformedURLException: " + e.getMessage());
+		} catch (RemoteException e) {
+			System.out.println("RemoteException: " + e.getMessage());
+		} catch (NotBoundException e) {
+			System.out.println("NotBoundException: " + e.getMessage());
+		}
+	}
+	
+	public void run () 
+	{
+		
+	}
+
+	// Creates the log file for this Player
+	private void createLog()
+	{
+		try {
+			log = Logger.getLogger(this.getName());
+			FileHandler fileHandler = new FileHandler(this.getName() + ".log");
+			log.addHandler(fileHandler);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fileHandler.setFormatter(formatter);
+	        log.info("Log file created for PlayerClient");
+		} catch (SecurityException | IOException e) {
+			log.info("Log File Error: " + e.getMessage());
+		}
+	}
+}

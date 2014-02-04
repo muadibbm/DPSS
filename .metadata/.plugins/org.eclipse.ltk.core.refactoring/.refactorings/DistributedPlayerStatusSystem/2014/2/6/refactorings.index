@@ -1,0 +1,12 @@
+1391349731196	Delete element
+1391376854171	Encapsulate field 'aFirstName'
+1391376864394	Encapsulate field 'aLastName'
+1391376903942	Encapsulate field 'aAge'
+1391376909098	Encapsulate field 'aUserName'
+1391376914831	Encapsulate field 'aPassword'
+1391376921085	Encapsulate field 'aIPAddress'
+1391376932484	Encapsulate field 'bOnline'
+1391465228071	Delete element
+1391467105215	Rename type 'Main'
+1391467414172	Delete element
+1391471245602	Rename type 'SystemParameters'
