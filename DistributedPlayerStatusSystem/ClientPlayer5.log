@@ -1,9 +1,9 @@
-Feb 04, 2014 2:08:51 AM PlayerClient createLog
+Feb 04, 2014 9:46:49 AM PlayerClient createLog
 INFO: Log file created for PlayerClient
-Feb 04, 2014 2:08:51 AM PlayerClient createPlayerAccount
+Feb 04, 2014 9:46:50 AM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "noFirstName", LastName "noLastName", Age "34", Username "JokerIsAwesome", Password "KillDarkKnight", IP-address "182.192.168.5", Player is currently Offline
-Feb 04, 2014 2:08:52 AM PlayerClient playerSignIn
+Feb 04, 2014 9:46:50 AM PlayerClient playerSignIn
 INFO: Player Sign in : Player JokerIsAwesome Is Now Online
-Feb 04, 2014 2:08:52 AM PlayerClient playerSignOut
+Feb 04, 2014 9:46:50 AM PlayerClient playerSignOut
 INFO: Player Sign out : Player JokerIsAwesome Is Now Offline

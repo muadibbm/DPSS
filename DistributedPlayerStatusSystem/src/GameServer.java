@@ -346,10 +346,8 @@ public class GameServer implements GameServerRMI, Runnable
 		return "Error Getting Player Status : Socket Excpetion";
 	}
 	
-	/**
-	 * @return the number of current online players in this server
-	 */
-	public int getNumberOfOnlinePlayer()
+	// returns the number of current online players in this server
+	private int getNumberOfOnlinePlayer()
 	{
 		List <Account> tmpList;
 		Enumeration<List<Account>> enumeration = database.elements();
@@ -364,10 +362,8 @@ public class GameServer implements GameServerRMI, Runnable
 		return numberOfOnlinePlayers;
 	}
 	
-	/**
-	 * @return the number of current offline players in this server
-	 */
-	public int getNumberOfOfflinePlayer()
+	// returns the number of current offline players in this server
+	private int getNumberOfOfflinePlayer()
 	{
 		List <Account> tmpList;
 		Enumeration<List<Account>> enumeration = database.elements();

@@ -289,8 +289,8 @@ public class GameServer implements GameServerRMI, Runnable
 			// Create a Datagram Socket and bind it to a local port
 			DatagramSocket datagramSocket = new DatagramSocket();
 			// Place data in byte array
-			String data = "getPlayerStatus";
-			byte [] message = data.getBytes();
+			String data;
+			byte [] message;
 			InetAddress host = InetAddress.getByName("localhost");
 			DatagramPacket request1;
 			DatagramPacket request2;
@@ -299,16 +299,22 @@ public class GameServer implements GameServerRMI, Runnable
 			// Create a Datagram Packet to send the request to the server
 			if(aUDPPort == DPSS.UDPportNA)
 			{
+				data = "NA";
+				message = data.getBytes();
 				request1 = new DatagramPacket(message, data.length(), host, DPSS.UDPportEU);
 				request2 = new DatagramPacket(message, data.length(), host, DPSS.UDPportAS);
 			}
 			else if(aUDPPort == DPSS.UDPportEU)
 			{
+				data = "EU";
+				message = data.getBytes();
 				request1 = new DatagramPacket(message, data.length(), host, DPSS.UDPportNA);
 				request2 = new DatagramPacket(message, data.length(), host, DPSS.UDPportAS);
 			}
 			else if(aUDPPort == DPSS.UDPportAS)
 			{
+				data = "AS";
+				message = data.getBytes();
 				request1 = new DatagramPacket(message, data.length(), host, DPSS.UDPportEU);
 				request2 = new DatagramPacket(message, data.length(), host, DPSS.UDPportNA);
 			}
@@ -317,21 +323,18 @@ public class GameServer implements GameServerRMI, Runnable
 				log.info("Error Getting Player Status : Invalid Port number");
 				return "Error Getting Player Status : Invalid Port number";
 			}
-			// Invoke the send method using the socket with a reference to the request packet
 			datagramSocket.send(request1);
-			datagramSocket.send(request2);
-			// Create a Datagram Packet to get the reply from the server
-			byte [] buffer = new byte [1000];
-			reply1 = new DatagramPacket(buffer, buffer.length);
-			reply2 = new DatagramPacket(buffer, buffer.length);
-			// Invoke the receive method using the socket with a reference to the reply packet
+			message = new byte [1000];
+			reply1 = new DatagramPacket(message, message.length);
 			datagramSocket.receive(reply1);
+			datagramSocket.send(request2);
+			message = new byte [1000];
+			reply2 = new DatagramPacket(message, message.length);
 			datagramSocket.receive(reply2);
-			System.out.println(reply1);
 			log.info("Get Player Status : " + aServerName + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
-					" offline." + new String(reply1.getData()) + new String(reply2.getData()));
+					" offline. \n" + new String(reply1.getData()) + "\n" + new String(reply2.getData()));
 			return "Get Player Status : " + aServerName + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
-					" offline." + new String(reply1.getData()) + new String(reply2.getData());
+					" offline. \n" + new String(reply1.getData()) + "\n" + new String(reply2.getData());
 			
 		} catch (SocketException e) {
 			System.out.println("SocketException : " + e.getMessage());
@@ -343,10 +346,8 @@ public class GameServer implements GameServerRMI, Runnable
 		return "Error Getting Player Status : Socket Excpetion";
 	}
 	
-	/**
-	 * @return the number of current online players in this server
-	 */
-	public int getNumberOfOnlinePlayer()
+	// @return the number of current online players in this server
+	private int getNumberOfOnlinePlayer()
 	{
 		List <Account> tmpList;
 		Enumeration<List<Account>> enumeration = database.elements();
@@ -361,10 +362,8 @@ public class GameServer implements GameServerRMI, Runnable
 		return numberOfOnlinePlayers;
 	}
 	
-	/**
-	 * @return the number of current offline players in this server
-	 */
-	public int getNumberOfOfflinePlayer()
+	// @return the number of current offline players in this server
+	private int getNumberOfOfflinePlayer()
 	{
 		List <Account> tmpList;
 		Enumeration<List<Account>> enumeration = database.elements();

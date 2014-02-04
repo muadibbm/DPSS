@@ -39,13 +39,18 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameServer.java" partName="GameServer.java" path="C:/Users/muadibbm/workspace/DPSS/DistributedPlayerStatusSystem/src/GameServer.java" title="GameServer.java" tooltip="DistributedPlayerStatusSystem/src/GameServer.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DistributedPlayerStatusSystem/src/GameServer.java"/>
-<editorState selectionHorizontalPixel="4" selectionLength="0" selectionOffset="3122" selectionTopPixel="990"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerClient.java" partName="PlayerClient.java" path="C:/Users/muadibbm/workspace/DPSS/DistributedPlayerStatusSystem/src/PlayerClient.java" title="PlayerClient.java" tooltip="DistributedPlayerStatusSystem/src/PlayerClient.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DistributedPlayerStatusSystem/src/PlayerClient.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6451" selectionTopPixel="1665"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AdministratorClient.java" partName="AdministratorClient.java" path="C:/Users/muadibbm/workspace/DPSS/DistributedPlayerStatusSystem/src/AdministratorClient.java" title="AdministratorClient.java" tooltip="DistributedPlayerStatusSystem/src/AdministratorClient.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DistributedPlayerStatusSystem/src/AdministratorClient.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="38"/>
 </editor>
 </editors>
 <views>
@@ -71,11 +76,6 @@
 <view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" partName="Data Source Explorer"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<expanded>
-<category IMemento.internal.id="Warnings (1 item)"/>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
-</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -142,7 +142,7 @@
 <view id="org.eclipse.wst.server.ui.ServersView" partName="Servers"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jst.j2ee.internal.perspective.J2EEPerspective" id="org.eclipse.jst.j2ee.J2EEPerspective" label="Java EE"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -423,25 +423,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/GameServer.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/AdministratorClient.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/DPSS.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/Account.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/PlayerClient.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DistributedPlayerStatusSystem/src/AdministratorClient.java"/>
 </editors>
-<item historyLabel="AdministratorClient.java" index="2">
-<position/>
-</item>
-<item historyLabel="PlayerClient.java" index="0">
-<position/>
-</item>
-<item historyLabel="AdministratorClient.java" index="2">
-<position/>
-</item>
-<item historyLabel="PlayerClient.java" index="0">
-<position/>
-</item>
-<item historyLabel="AdministratorClient.java" index="2">
-<position/>
-</item>
-<item historyLabel="PlayerClient.java" index="0">
-<position/>
-</item>
 <item historyLabel="AdministratorClient.java" index="2">
 <position/>
 </item>
@@ -571,8 +556,26 @@
 <item historyLabel="PlayerClient.java" index="0">
 <position info="not_deleted" x="1389" y="0"/>
 </item>
-<item active="true" historyLabel="GameServer.java" index="1">
-<position info="not_deleted" x="3122" y="0"/>
+<item historyLabel="GameServer.java" index="1">
+<position/>
+</item>
+<item historyLabel="Account.java" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PlayerClient.java" index="5">
+<position info="not_deleted" x="735" y="11"/>
+</item>
+<item historyLabel="GameServer.java" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="PlayerClient.java" index="5">
+<position info="not_deleted" x="735" y="11"/>
+</item>
+<item historyLabel="AdministratorClient.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="PlayerClient.java" index="5">
+<position info="not_deleted" x="735" y="11"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -593,11 +596,11 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DPSS.java" tooltip="DistributedPlayerStatusSystem/src/DPSS.java">
-<persistable path="/DistributedPlayerStatusSystem/src/DPSS.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AdministratorClient.java" tooltip="DistributedPlayerStatusSystem/src/AdministratorClient.java">
 <persistable path="/DistributedPlayerStatusSystem/src/AdministratorClient.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameServer.java" tooltip="DistributedPlayerStatusSystem/src/GameServer.java">
+<persistable path="/DistributedPlayerStatusSystem/src/GameServer.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PlayerClient.java" tooltip="DistributedPlayerStatusSystem/src/PlayerClient.java">
 <persistable path="/DistributedPlayerStatusSystem/src/PlayerClient.java"/>
@@ -605,14 +608,14 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Account.java" tooltip="DistributedPlayerStatusSystem/src/Account.java">
 <persistable path="/DistributedPlayerStatusSystem/src/Account.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DPSS.java" tooltip="DistributedPlayerStatusSystem/src/DPSS.java">
+<persistable path="/DistributedPlayerStatusSystem/src/DPSS.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameServerRMI.java" tooltip="DistributedPlayerStatusSystem/src/GameServerRMI.java">
 <persistable path="/DistributedPlayerStatusSystem/src/GameServerRMI.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="security.policy" tooltip="DistributedPlayerStatusSystem/security.policy">
 <persistable path="/DistributedPlayerStatusSystem/security.policy"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="GameServer.java" tooltip="DistributedPlayerStatusSystem/src/GameServer.java">
-<persistable path="/DistributedPlayerStatusSystem/src/GameServer.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="Notes" tooltip="DistributedPlayerStatusSystem/Notes">
 <persistable path="/DistributedPlayerStatusSystem/Notes"/>

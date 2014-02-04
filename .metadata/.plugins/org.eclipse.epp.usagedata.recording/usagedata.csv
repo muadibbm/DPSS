@@ -1,1 +1,5 @@
 what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,com.google.gdt.eclipse.designer.hosted.2_0.webkit,2.5.0.r37x201112291019,"com.google.gdt.eclipse.designer.hosted.2_0.webkit",1391527589888
+stopped,bundle,com.google.gdt.eclipse.designer.hosted.2_0,2.5.0.r37x201112291019,"com.google.gdt.eclipse.designer.hosted.2_0",1391527589888
+stopped,bundle,org.eclipse.ecf.provider.filetransfer.httpclient,4.0.0.v20110531-2218,"org.eclipse.ecf.provider.filetransfer.httpclient",1391527589888
+stopped,bundle,org.eclipse.epp.mpc.core,1.1.1.I20110907-0947,"org.eclipse.epp.mpc.core",1391527589888
