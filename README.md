@@ -11,5 +11,5 @@ The Game Servers communicate with each other through UDP while the users each co
 with their associated server based on IP-Address through RMI.
 Below, you can see a class diagram of the program.
 
-![Alt text](/path/to/ClassDiagram.png "UML Class Diagram")
+![Alt text](/ClassDiagram.jpg "UML Class Diagram")
 
