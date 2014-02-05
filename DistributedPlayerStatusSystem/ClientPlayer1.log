@@ -1,30 +1,28 @@
-Feb 04, 2014 11:35:21 AM PlayerClient createLog
+Feb 04, 2014 7:45:45 PM PlayerClient createLog
 INFO: Log file created for PlayerClient
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "David", LastName "Copperfield", Age "14", Username "David14", Password "DifficultPassword", IP-address "132.192.168.1", Player is currently Offline
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "Sam", LastName "Tully", Age "26", Username "Player1", Password "badPassword", IP-address "132.192.168.3", Player is currently Offline
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Error Creating Player Account : Username has to be at least 6 characters
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Invalid GeoLocation
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Error Creating Player Account : Invalid IP-address
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Error Creating Player Account : Password has to be at least 6 characters
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignIn
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignIn
 INFO: Player Sign in : Player David14 Is Now Online
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignIn
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignIn
 INFO: Error Player Sign in : Player David14 Is Already Online
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignIn
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignIn
 INFO: Error Player Sign in : Username Was Not Found
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignOut
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignOut
 INFO: Player Sign out : Player David14 Is Now Offline
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignOut
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignOut
 INFO: Error Player Sign out : Player David14 Is Already Offline
-Feb 04, 2014 11:35:29 AM PlayerClient run
-INFO: Invalid GeoLocation
-Feb 04, 2014 11:35:39 AM PlayerClient run
-INFO: Error Creating Player Account : Username has to be at least 6 characters
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignOut
+INFO: Player Sign out : Player LittleJohn Is Now Offline

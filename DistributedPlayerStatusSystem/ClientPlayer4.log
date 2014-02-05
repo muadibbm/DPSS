@@ -1,7 +1,7 @@
-Feb 04, 2014 11:35:21 AM PlayerClient createLog
+Feb 04, 2014 7:45:45 PM PlayerClient createLog
 INFO: Log file created for PlayerClient
-Feb 04, 2014 11:35:22 AM PlayerClient createPlayerAccount
+Feb 04, 2014 7:45:46 PM PlayerClient createPlayerAccount
 INFO: Player Account created :
 FirstName "Bruce", LastName "Wayne", Age "34", Username "Batman", Password "DarkKnight", IP-address "93.100.100.100", Player is currently Offline
-Feb 04, 2014 11:35:22 AM PlayerClient playerSignIn
+Feb 04, 2014 7:45:46 PM PlayerClient playerSignIn
 INFO: Player Sign in : Player Batman Is Now Online

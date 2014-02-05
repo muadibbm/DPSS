@@ -32,6 +32,7 @@ public class AdministratorClient extends Thread
 		scanner = new Scanner(System.in);
 		createLog();
 		System.setSecurityManager(new RMISecurityManager());
+		this.start();
 	}
 	
 	/**
@@ -71,7 +72,7 @@ public class AdministratorClient extends Thread
 	/**
 	 * This method starts the administrator with fully implemented prompt functionality
 	 */
-	public void run () 
+	public void runTerminal () 
 	{
 		aTmpAccount = new Account();
 		try {

@@ -49,35 +49,38 @@ public class PlayerClient extends Thread
 		player1.createPlayerAccount("Sam", "Tully", 26, "Player1", "badPassword", "132.192.168.3");
 		// TEST CASE 3 : Invalid Username
 		player1.createPlayerAccount("Sam", "Tully", 26, "P", "badPassword", "132.192.168.3");
-		// TEST CASE 3 : Invalid GeoLocation
+		// TEST CASE 4 : Invalid GeoLocation
 		player1.createPlayerAccount("Sam", "Tully", 26, "smartPlayer", "badPassword", "111.132.222.102");
-		// TEST CASE 4 : Invalid IP-address
+		// TEST CASE 5 : Invalid IP-address
 		player1.createPlayerAccount("Sam", "Tully", 26, "smartPlayer", "badPassword", "132.1323211");
-		// TEST CASE 5 : Invalid Password
+		// TEST CASE 6 : Invalid Password
 		player1.createPlayerAccount("Sam", "Tully", 26, "smartPlayer", "p", "132.192.168.3");
-		// TEST CASE 6 : playerSignIn
+		// TEST CASE 7 : playerSignIn
 		player1.playerSignIn("David14", "DifficultPassword", "132.192.168.1");
 		player2.playerSignIn("LittleJohn", "xxxxxxxxxx", "132.193.150.1");
 		player3.playerSignIn("Blood36", "1234567890", "132.198.177.2");
 		player4.playerSignIn("Batman", "DarkKnight", "93.100.100.100");
 		player5.playerSignIn("JokerIsAwesome", "KillDarkKnight", "182.192.168.5");
 		player6.playerSignIn("Superman", "Cryptonyte", "182.192.100.1");
-		// TEST CASE 7 : playerSignIn when player is online
+		// TEST CASE 8 : playerSignIn when player is online
 		player1.playerSignIn("David14", "DifficultPassword", "132.192.168.1");
-		// TEST CASE 8 : playerSignIn when account does not exist
+		// TEST CASE 9 : playerSignIn when account does not exist
 		player1.playerSignIn("Somebody", "DifficultPassword", "132.192.168.1");
-		// TEST CASE 9 : playerSignOut
+		// TEST CASE 10 : playerSignOut
 		player1.playerSignOut("David14", "132.192.168.1");
 		player3.playerSignOut("Blood36", "132.198.177.2");
 		player5.playerSignOut("JokerIsAwesome", "182.192.168.5");
-		// TEST CASE 10 : getPlayerStatus
+		// TEST CASE 11 : getPlayerStatus
 		admin1.getPlayerStatus("Admin", "Admin", "132.192.169.20");
 		admin2.getPlayerStatus("Admin", "Admin", "93.192.169.20");
 		admin3.getPlayerStatus("Admin", "Admin", "182.192.169.20");
-		// TEST CASE 11 : playerSignOut when player is Offline
+		// TEST CASE 12 : playerSignOut when player is Offline
 		player1.playerSignOut("David14", "132.192.168.1");
+		// TEST CASE 13 : playerSignOut Concurrency
+		player1.playerSignOut("LittleJohn", "132.193.150.1");
+		player2.playerSignOut("LittleJohn", "132.193.150.1");
 		// START TERMINAL
-		player1.run();
+		player1.runTerminal();
 	}
 	
 	/**
@@ -89,6 +92,7 @@ public class PlayerClient extends Thread
 		scanner = new Scanner(System.in);
 		createLog();
 		System.setSecurityManager(new RMISecurityManager());
+		this.start();
 	}
 	
 	/**
@@ -204,7 +208,7 @@ public class PlayerClient extends Thread
 	/**
 	 * This method starts the client with fully implemented prompt functionality
 	 */
-	public void run ()
+	public void runTerminal ()
 	{	
 		aTmpAccount = new Account();
 		try {
