@@ -12,6 +12,12 @@
 		<list key="textEntries">
 		</list>
 	</section>
+	<section name="NewWizardAction">
+		<item value="net.sf.eclipsecorba.ui.wizard.newIDLFile" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="net.sf.eclipsecorba.ui.corbaCategory"/>
+		</list>
+	</section>
 	<section name="FileSystemExportWizard">
 		<item value="false" key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID"/>
 		<item value="false" key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>

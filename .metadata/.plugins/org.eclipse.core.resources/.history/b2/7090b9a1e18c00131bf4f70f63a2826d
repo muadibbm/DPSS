@@ -1,6 +1,0 @@
-
-public class Confirmation 
-{
-	private boolean bSuccess;
-	private String message;
-}

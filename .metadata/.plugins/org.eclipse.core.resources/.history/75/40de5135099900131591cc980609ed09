@@ -1,0 +1,20 @@
+package animal;
+
+/**
+ * Interface definition: behavoir.
+ * 
+ * @author OpenORB Compiler
+ */
+public interface behavoirOperations
+{
+    /**
+     * Operation method
+     */
+    public void method();
+
+    /**
+     * Operation createPlayerAccount
+     */
+    public String createPlayerAccount(String pFirstName, String pLastName, int pAge, String pUsername, String pPassword, String pIPAddress);
+
+}

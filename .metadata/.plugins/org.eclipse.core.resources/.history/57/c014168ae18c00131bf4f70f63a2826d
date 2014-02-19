@@ -1,5 +1,0 @@
-
-public class Confirmation 
-{
-	private boolean bSuccess;
-}

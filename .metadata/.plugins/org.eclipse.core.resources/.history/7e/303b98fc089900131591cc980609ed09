@@ -1,0 +1,15 @@
+package animal;
+
+/**
+ * Interface definition: behavoir.
+ * 
+ * @author OpenORB Compiler
+ */
+public interface behavoirOperations
+{
+    /**
+     * Operation method
+     */
+    public void method();
+
+}

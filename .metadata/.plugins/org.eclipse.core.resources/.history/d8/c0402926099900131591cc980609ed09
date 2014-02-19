@@ -1,0 +1,5 @@
+module animal {
+	interface behavoir {
+		void method();
+	};
+};

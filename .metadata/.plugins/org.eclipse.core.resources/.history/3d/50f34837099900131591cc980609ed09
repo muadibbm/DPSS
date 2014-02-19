@@ -1,0 +1,7 @@
+module animal {
+	interface behavoir {
+		void method();
+				// This method when invoked from a PlayerClient will create a player account with the given parameters
+		string createPlayerAccount(in string pFirstName, in string pLastName, in long pAge, in string pUsername, in string pPassword, in string pIPAddress);// raises (IDL_ERROR);
+	};
+};

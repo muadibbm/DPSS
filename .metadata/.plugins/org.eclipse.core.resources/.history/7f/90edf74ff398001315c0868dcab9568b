@@ -1,0 +1,42 @@
+package IDL;
+
+/**
+ * Interface definition: interfaceIDL.
+ * 
+ * @author OpenORB Compiler
+ */
+public abstract class interfaceIDLPOA extends org.omg.PortableServer.Servant
+        implements interfaceIDLOperations, org.omg.CORBA.portable.InvokeHandler
+{
+    public interfaceIDL _this()
+    {
+        return interfaceIDLHelper.narrow(_this_object());
+    }
+
+    public interfaceIDL _this(org.omg.CORBA.ORB orb)
+    {
+        return interfaceIDLHelper.narrow(_this_object(orb));
+    }
+
+    private static String [] _ids_list =
+    {
+        "IDL:IDL/interfaceIDL:1.0"
+    };
+
+    public String[] _all_interfaces(org.omg.PortableServer.POA poa, byte [] objectId)
+    {
+        return _ids_list;
+    }
+
+    public final org.omg.CORBA.portable.OutputStream _invoke(final String opName,
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler)
+    {
+
+        {
+            throw new org.omg.CORBA.BAD_OPERATION(opName);
+        }
+    }
+
+    // helper methods
+}

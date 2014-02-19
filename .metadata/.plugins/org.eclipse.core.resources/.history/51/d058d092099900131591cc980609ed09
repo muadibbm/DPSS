@@ -1,0 +1,10 @@
+package animal;
+
+/**
+ * Interface definition: behavoir.
+ * 
+ * @author OpenORB Compiler
+ */
+public interface behavoir extends behavoirOperations, org.omg.CORBA.Object, org.omg.CORBA.portable.IDLEntity
+{
+}

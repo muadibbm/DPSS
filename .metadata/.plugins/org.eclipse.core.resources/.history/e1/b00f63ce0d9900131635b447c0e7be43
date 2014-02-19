@@ -1,0 +1,52 @@
+package IDL;
+
+/**
+ * Exception definition: IDL_ERROR.
+ * 
+ * @author OpenORB Compiler
+ */
+public final class IDL_ERROR extends org.omg.CORBA.UserException
+{
+    /**
+     * Exception member errorCode
+     */
+    public int errorCode;
+
+    /**
+     * Exception member message
+     */
+    public String message;
+
+    /**
+     * Default constructor
+     */
+    public IDL_ERROR()
+    {
+        super(IDL_ERRORHelper.id());
+    }
+
+    /**
+     * Constructor with fields initialization
+     * @param errorCode errorCode exception member
+     * @param message message exception member
+     */
+    public IDL_ERROR(int errorCode, String message)
+    {
+        super(IDL_ERRORHelper.id());
+        this.errorCode = errorCode;
+        this.message = message;
+    }
+
+    /**
+     * Full constructor with fields initialization
+     * @param errorCode errorCode exception member
+     * @param message message exception member
+     */
+    public IDL_ERROR(String orb_reason, int errorCode, String message)
+    {
+        super(IDL_ERRORHelper.id() +" " +  orb_reason);
+        this.errorCode = errorCode;
+        this.message = message;
+    }
+
+}

@@ -12,11 +12,11 @@
 <booleanAttribute key="net.genady.rmi.logRMIEvents" value="false"/>
 <booleanAttribute key="net.genady.rmi.logRMIEvents.noSerialization" value="false"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/DistributedPlayerStatusSystem/src/PlayerClient.java"/>
+<listEntry value="/DistributedPlayerStatusSystem(RMI)/src/PlayerClient.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="PlayerClient"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="DistributedPlayerStatusSystem"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="DistributedPlayerStatusSystem(RMI)"/>
 </launchConfiguration>

@@ -16,4 +16,8 @@
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="GameServer"/>
 <fullyQualifiedTypeName name="SystemParameters"/>
+<fullyQualifiedTypeName name="org.omg.CORBA.Any"/>
+<fullyQualifiedTypeName name="dpss.interfaceIDLPOA"/>
+<fullyQualifiedTypeName name="system.Account"/>
+<fullyQualifiedTypeName name="system.Parameters"/>
 </qualifiedTypeNameHistroy>

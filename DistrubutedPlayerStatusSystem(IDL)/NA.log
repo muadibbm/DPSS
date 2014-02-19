@@ -1,0 +1,6 @@
+Feb 18, 2014 10:25:11 PM servers.GameServer createLog
+INFO: Log file created for GameServer NA with port number 1020
+To connect to this server, the clients have to aquire IP address in form of 132.xxx.xxx.xxx
+Feb 18, 2014 10:25:11 PM servers.GameServer <init>
+INFO: Database initialized
+{Z=[], Y=[], X=[], W=[], V=[], U=[], T=[], S=[], R=[], Q=[], P=[], O=[], N=[], M=[], L=[], K=[], J=[], I=[], H=[], G=[], F=[], E=[], D=[], C=[], B=[], A=[]}

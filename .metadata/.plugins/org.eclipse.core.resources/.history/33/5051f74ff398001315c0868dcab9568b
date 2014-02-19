@@ -1,0 +1,23 @@
+package IDL;
+
+/**
+ * Interface definition: interfaceIDL.
+ * 
+ * @author OpenORB Compiler
+ */
+public class _interfaceIDLStub extends org.omg.CORBA.portable.ObjectImpl
+        implements interfaceIDL
+{
+    static final String[] _ids_list =
+    {
+        "IDL:IDL/interfaceIDL:1.0"
+    };
+
+    public String[] _ids()
+    {
+     return _ids_list;
+    }
+
+    private final static Class _opsClass = IDL.interfaceIDLOperations.class;
+
+}
