@@ -1,0 +1,664 @@
+package servers;
+
+import org.omg.CORBA.ORB;
+
+import org.omg.CORBA.ORBPackage.InvalidName;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
+import org.omg.PortableServer.POAManagerPackage.AdapterInactive;
+import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
+import org.omg.PortableServer.POAPackage.ObjectNotActive;
+import org.omg.PortableServer.POAPackage.WrongPolicy;
+
+import dpss.interfaceIDLPOA;
+
+import system.Account;
+import system.Parameters;
+
+import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.net.*;
+
+import java.io.IOException; 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+/** Thread Class that runs the ORB object */
+class ORBThread extends Thread
+{
+	private ORB orb;
+	
+	public ORBThread(ORB pOrb)
+	{
+		orb = pOrb;
+	}
+	
+	public void run()
+	{
+		orb.run();
+	}
+}
+
+/** Thread Class that runs the UDP object */
+class UDPThread extends Thread
+{
+	private String aServerName;
+	private int aUDPPort;
+	private int aOnline;
+	private int aOffline;
+	private boolean bCrashed;
+	
+	public UDPThread(String pServerName, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aUDPPort = pUDPPort;
+		aOnline = 0;
+		aOffline = 0;
+		bCrashed = false;
+		
+	}
+	
+	public void setNumberOfPlayers(int pOnline, int pOffline)
+	{
+		aOnline = pOnline;
+		aOffline = pOffline;
+	}
+	
+	public boolean crashed()
+	{
+		return bCrashed;
+	}
+	
+	public void run()
+	{
+		try {
+			DatagramSocket datagramSocket = new DatagramSocket(aUDPPort);
+			byte [] buffer = new byte [1000];
+			DatagramPacket request;
+			DatagramPacket reply;
+			while(true)
+			{
+				request = new DatagramPacket(buffer, buffer.length);
+				datagramSocket.receive(request);
+				buffer = (aServerName + ": " + aOnline + " online, " + aOffline + " offline. ").getBytes();
+				reply = new DatagramPacket(buffer, buffer.length, request.getAddress(), request.getPort());
+				datagramSocket.send(reply);
+			}
+		} catch (IOException e) {
+			System.out.println("IOException : " + e.getMessage());
+			bCrashed = true;
+		}
+	}
+}
+
+/*
+ * This is the GameServer class which implements the GameServerRMI interface
+ * @author Mehrdad Dehdashti
+ */
+public class GameServer extends interfaceIDLPOA implements Runnable
+{	
+	private String aServerName;
+	private int aUDPPort;
+	private String aGeoLocation;
+	private Hashtable<String, List<Account>> database;
+	private Logger log;
+	private ORB orb;
+	private ORBThread aOrbThread; 
+	private UDPThread aUDPThread; 
+	
+	// Main Method
+	public static void main(String[] args) throws InvalidName, ServantAlreadyActive, WrongPolicy, 
+													ObjectNotActive, FileNotFoundException, AdapterInactive 
+	{
+		new Thread(new GameServer("NA", Parameters.GeoLocationOfGameServerNA, args, Parameters.UDPportNA)).start();
+		new Thread(new GameServer("EU", Parameters.GeoLocationOfGameServerEU, args, Parameters.UDPportEU)).start();
+		new Thread(new GameServer("AS", Parameters.GeoLocationOfGameServerAS, args, Parameters.UDPportAS)).start();
+	}
+	
+	/**
+	 * Constructor of GameServer
+	 * @param pServerName
+	 */
+	public GameServer(String pServerName,  String pGeoLocation, String[] pArgs, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aGeoLocation = pGeoLocation;
+		aUDPPort = pUDPPort;
+		createLog();
+		database = new Hashtable<String, List<Account>>();
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			database.put(String.valueOf(alphabet), new ArrayList <Account>());
+		}
+		log.info("Database initialized\n" + database.toString());
+		createORB(pArgs);
+	}
+	
+	// For constructing the IDL interface object
+	public GameServer(String pServerName,  String pGeoLocation, Logger pLog, Hashtable<String, List<Account>> pDatabase, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aGeoLocation = pGeoLocation;
+		log = pLog;
+		database = pDatabase;
+		aUDPPort = pUDPPort;
+	}
+	
+	private void createORB(String[] pArgs)
+	{
+		try {
+			// Initialize the ORB object
+			orb = ORB.init(pArgs, null);
+			POA rootPOA = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+			GameServer aSampleInterface = new GameServer(aServerName, aGeoLocation, log, database, aUDPPort);
+			byte [] id = rootPOA.activate_object(aSampleInterface);
+			// Obtain reference to CORBA object
+			org.omg.CORBA.Object reference_CORBA = rootPOA.id_to_reference(id);
+			// Write the CORBA object to a file
+			String stringORB = orb.object_to_string(reference_CORBA);
+			PrintWriter file = new PrintWriter(aServerName + "_IOR.txt");
+			file.print(stringORB);
+			file.close();
+			rootPOA.the_POAManager().activate();
+			log.info("Server ORB init completed with file " + aServerName + ".txt");
+		} catch (InvalidName | ServantAlreadyActive | WrongPolicy | 
+				ObjectNotActive | FileNotFoundException | AdapterInactive e) {
+			log.info("ORB Creation Error: " + e.getMessage());
+		}
+	}
+	
+	// Creates the log file for this server
+	private void createLog()
+	{
+		try {
+			log = Logger.getLogger(aServerName);
+			FileHandler fileHandler = new FileHandler(aServerName+".log");
+			log.addHandler(fileHandler);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fileHandler.setFormatter(formatter);  
+	        log.info("Log file created for GameServer " + aServerName +
+	        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + aGeoLocation + ".xxx.xxx.xxx");
+		} catch (SecurityException | IOException e) {
+			log.info("Log File Error: " + e.getMessage());
+		}
+	}
+	
+	/** Create the UDP and ORB threads and checks if the UDP thread crashes so it would replace it with a new UDP thread */
+	public void run()
+	{
+		aOrbThread = new ORBThread(orb);
+		aUDPThread = new UDPThread(aServerName, aUDPPort);
+		aOrbThread.start();
+		log.info("ORB Running");
+		aUDPThread.start();
+		log.info("UDP Running");
+		while(true)
+		{
+			if(aUDPThread.crashed())
+			{
+				aUDPThread = new UDPThread(aServerName, aUDPPort);
+				aUDPThread.start();
+			}
+			aUDPThread.setNumberOfPlayers(this.getNumberOfOnlinePlayer(), getNumberOfOfflinePlayer());
+		}
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will create a player account with the given parameters
+	 * and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	@Override
+	public String createPlayerAccount(String pFirstName, String pLastName, int pAge, 
+			                          String pUsername, String pPassword, String pIPAddress) 
+	{
+		if(pAge <= 0)
+		{
+			log.info("Error Creating Player Account : Invalid Age");
+			return "Error Creating Player Account : Invalid Age";
+		}
+		if(pUsername.length() < 6)
+		{
+			log.info("Error Creating Player Account : Username has to be at least 6 characters");
+			return "Error Creating Player Account : Username has to be at least 6 characters";
+		}
+		if(pUsername.length() > 15)
+		{
+			log.info("Error Creating Player Account : Username has to be at most 15 characters");
+			return "Error Creating Player Account : Username has to be at most 15 characters";
+		}
+		if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+		{
+			log.info("Error Creating Player Account : Username cannot start with " + pUsername.charAt(0));
+			return "Error Creating Player Account : Username cannot start with " + pUsername.charAt(0);
+		}
+		if(getAccount(pUsername) != null)
+		{
+			log.info("Error Creating Player Account : Username " + pUsername + " Already Exists");
+			return "Error Creating Player Account : Username " + pUsername + " Already Exists";
+		}
+		if(pPassword.length() < 6)
+		{
+			log.info("Error Creating Player Account : Password has to be at least 6 characters");
+			return "Error Creating Player Account : Password has to be at least 6 characters";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Creating Player Account : Invalid IP-address");
+			return "Error Creating Player Account : Invalid IP-address";
+		}
+		if(IPAddressExists(pIPAddress))
+		{
+			log.info("Error Creating Player Account : IP-address Already Exists");
+			return "Error Creating Player Account : IP-address Already Exists";
+		}
+		
+		List <Account> tmpList;
+		tmpList = database.get(String.valueOf(pUsername.toUpperCase().charAt(0)));
+		synchronized(this)
+		tmpList.add(new Account(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress));
+		
+		log.info("Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+				"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + 
+				pIPAddress + "\", Player is currently Offline");
+		return "Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+				"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + 
+				pIPAddress + "\", Player is currently Offline";
+	}
+
+	/**
+	 * This method when invoked from a PlayerClient will set a player online if conditions are met 
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	@Override
+	public String playerSignIn(String pUsername, String pPassword, String pIPAddress)
+	{
+		if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+		{
+			log.info("Error Player Sign in : Username cannot start with " + pUsername.charAt(0));
+			return "Error Player Sign in : Username cannot start with " + pUsername.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsername);
+		if(tmpAccount == null)
+		{
+			log.info("Error Player Sign in : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Player Sign in : Username Was Not Found";
+		}
+		if(!tmpAccount.getPassword().equals(pPassword))
+		{
+			log.info("Error Player Sign in : Incorrect Password");
+			tmpAccount = null;
+			return "Error Player Sign in : Incorrect Password";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Player Sign in : Invalid IP-address");
+			tmpAccount = null;
+			return "Error Player Sign in : Invalid IP-address";
+		}
+		if(!tmpAccount.getIPAddress().equals(pIPAddress))
+		{
+			log.info("Error Player Sign in : Nonmatching IP-address");
+			tmpAccount = null;
+			return "Error Player Sign in : Nonmatching IP-address";
+		}
+		if(!tmpAccount.isOnline())
+		{
+			tmpAccount.setOnline(true);
+			tmpAccount = null;
+			log.info("Player Sign in : Player " +  pUsername + " Is Now Online");
+			return "Player Sign in : Player " +  pUsername + " Is Now Online";
+		}
+		else
+		{
+			log.info("Error Player Sign in : Player " + pUsername + " Is Already Online");
+			tmpAccount = null;
+			return "Error Player Sign in : Player " + pUsername + " Is Already Online";
+		}
+	}
+
+	/**
+	 * This method when invoked from a PlayerClient will set this player off-line if conditions are met
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	@Override
+	public String playerSignOut(String pUsername, String pIPAddress) 
+	{
+		if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+		{
+			log.info("Error Player Sign out : Username cannot start with " + pUsername.charAt(0));
+			return "Error Player Sign out : Username cannot start with " + pUsername.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsername);
+		if(tmpAccount == null)
+		{
+			log.info("Error Player Sign out : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Player Sign out : Username Was Not Found";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Player Sign out : Invalid IP-address");
+			tmpAccount = null;
+			return "Error Player Sign out : Invalid IP-address";
+		}
+		if(!tmpAccount.getIPAddress().equals(pIPAddress))
+		{
+			log.info("Error Player Sign out : Nonmatching IP-address");
+			tmpAccount = null;
+			return "Error Player Sign out : Nonmatching IP-address";
+		}
+		if(tmpAccount.isOnline())
+		{
+			tmpAccount.setOnline(false);
+			tmpAccount = null;
+			log.info("Player Sign out : Player " +  pUsername + " Is Now Offline");
+			return "Player Sign out : Player " +  pUsername + " Is Now Offline";
+		}
+		else
+		{
+			log.info("Error Player Sign out : Player " + pUsername + " Is Already Offline");
+			tmpAccount = null;
+			return "Error Player Sign out : Player " + pUsername + " Is Already Offline";
+		}
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will transfer this player's account to the given server
+	 * if conditions are met with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pOldIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pNewIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	@Override
+	public String transferAccount(String pUsername, String pPassword, String pOldIPAddress, String pNewIPAddress) {
+		
+		if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+		{
+			log.info("Error Transferring Account : Username cannot start with " + pUsername.charAt(0));
+			return "Error Transferring Account : Username cannot start with " + pUsername.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsername);
+		if(tmpAccount == null)
+		{
+			log.info("Error Transferring Account : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Transferring Account : Username Was Not Found";
+		}
+		if(!tmpAccount.getPassword().equals(pPassword))
+		{
+			log.info("Error Transferring Account : Incorrect Password");
+			tmpAccount = null;
+			return "Error Transferring Account : Incorrect Password";
+		}
+		if(!validate(pOldIPAddress))
+		{
+			log.info("Error Transferring Account : Invalid IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Invalid IP-address";
+		}
+		if(!tmpAccount.getIPAddress().equals(pOldIPAddress))
+		{
+			log.info("Error Transferring Account : Nonmatching IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Nonmatching IP-address";
+		}
+		if(!validate(pNewIPAddress))
+		{
+			log.info("Error Transferring Account : Invalid New IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Invalid New IP-address";
+		}
+		
+		if(database.get(String.valueOf(pUsername.toUpperCase().charAt(0))).remove(tmpAccount))
+		{
+			log.info("Player Account deleted :\nUsername \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pOldIPAddress + "\"");
+			return "Player Account deleted : Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pOldIPAddress + "\"\n" +
+			tmpAccount.getFirstName() + "\n" + 
+			tmpAccount.getLastName() + "\n" + 
+			Integer.toString(tmpAccount.getAge());
+		}
+		else
+		{
+			log.info("Error Transferring Account : removal faild");
+			return "ERROR_TRANSFER_ACCOUNT";
+		}
+	}
+
+	/**
+	 * This method when invoked from a AdministratorClient will return the number of players online and off-line
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return Confirmation in form of a string
+	 */
+	@Override
+	public String getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress)
+	{
+		if(!pAdminUsername.equals("Admin"))
+		{
+			log.info("Error Getting Player Status : Incorrect Administrator Username");
+			return "Error Getting Player Status : Incorrect Administrator Username";
+		}
+		if(!pAdminPassword.equals("Admin"))
+		{
+			log.info("Error Getting Player Status : Incorrect Administrator Password");
+			return "Error Getting Player Status : Incorrect Administrator Password";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Getting Player Status : Invalid IP-address");
+			return "Error Getting Player Status : Invalid IP-address";
+		}
+		try {
+			// Create a Datagram Socket and bind it to a local port
+			DatagramSocket datagramSocket = new DatagramSocket();
+			// Place data in byte array
+			String data;
+			byte [] message;
+			InetAddress host = InetAddress.getByName("localhost");
+			DatagramPacket request1;
+			DatagramPacket request2;
+			DatagramPacket reply1;
+			DatagramPacket reply2;
+			// Create a Datagram Packet to send the request to the server
+			if(aUDPPort == Parameters.UDPportNA)
+			{
+				data = "NA";
+				message = data.getBytes();
+				request1 = new DatagramPacket(message, data.length(), host, Parameters.UDPportEU);
+				request2 = new DatagramPacket(message, data.length(), host, Parameters.UDPportAS);
+			}
+			else if(aUDPPort == Parameters.UDPportEU)
+			{
+				data = "EU";
+				message = data.getBytes();
+				request1 = new DatagramPacket(message, data.length(), host, Parameters.UDPportNA);
+				request2 = new DatagramPacket(message, data.length(), host, Parameters.UDPportAS);
+			}
+			else if(aUDPPort == Parameters.UDPportAS)
+			{
+				data = "AS";
+				message = data.getBytes();
+				request1 = new DatagramPacket(message, data.length(), host, Parameters.UDPportEU);
+				request2 = new DatagramPacket(message, data.length(), host, Parameters.UDPportNA);
+			}
+			else
+			{
+				log.info("Error Getting Player Status : Invalid Port number");
+				return "Error Getting Player Status : Invalid Port number" + " " + aUDPPort;
+			}
+			datagramSocket.send(request1);
+			message = new byte [1000];
+			reply1 = new DatagramPacket(message, message.length);
+			datagramSocket.receive(reply1);
+			datagramSocket.send(request2);
+			message = new byte [1000];
+			reply2 = new DatagramPacket(message, message.length);
+			datagramSocket.receive(reply2);
+			log.info("Get Player Status : " + aServerName + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
+					" offline. \n" + new String(reply1.getData()) + "\n" + new String(reply2.getData()));
+			return "Get Player Status : " + aServerName + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
+					" offline. \n" + new String(reply1.getData()) + "\n" + new String(reply2.getData());
+			
+		} catch (SocketException e) {
+			System.out.println("SocketException : " + e.getMessage());
+		} catch (IOException e) {
+			System.out.println("IOException : " + e.getMessage());
+		}
+		
+		log.info("Error Getting Player Status : Socket Excpetion");
+		return "Error Getting Player Status : Socket Excpetion";
+	}
+
+	/**
+	 * This method when invoked from a AdministratorClient will suspend the player account given
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pUsernameToSuspend a minimum length of 6 characters and a maximum length of 15 characters
+	 * @return Confirmation in form of a string
+	 */
+	@Override
+	public String suspendAccount(String pAdminUsername, String pAdminPassword, String pIPAddress, String pUsernameToSuspend) {
+		if(!pAdminUsername.equals("Admin"))
+		{
+			log.info("Error Suspending Account : Incorrect Administrator Username");
+			return "Error Suspending Account : Incorrect Administrator Username";
+		}
+		if(!pAdminPassword.equals("Admin"))
+		{
+			log.info("Error Suspending Account : Incorrect Administrator Password");
+			return "Error Suspending Account : Incorrect Administrator Password";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Suspending Account : Invalid IP-address");
+			return "Error Suspending Account : Invalid IP-address";
+		}
+		if((pUsernameToSuspend.charAt(0) > 'Z' && pUsernameToSuspend.charAt(0) < 'a') || pUsernameToSuspend.charAt(0) < 'A' || pUsernameToSuspend.charAt(0) > 'z')
+		{
+			log.info("Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0));
+			return "Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsernameToSuspend);
+		if(tmpAccount == null)
+		{
+			log.info("Error Suspending Account : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Suspending Account : Username Was Not Found";
+		}
+		
+		if(database.get(String.valueOf(pUsernameToSuspend.toUpperCase().charAt(0))).remove(tmpAccount))
+		{
+			log.info("Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"");
+			return "Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"\n";
+		}
+		else
+		{
+			log.info("Error Suspending Account : suspension faild");
+			return "Error Suspending Account : suspension faild";
+		}
+	}
+	
+	// returns the number of current online players in this server
+	private int getNumberOfOnlinePlayer()
+	{
+		List <Account> tmpList;
+		Enumeration<List<Account>> enumeration = database.elements();
+		int numberOfOnlinePlayers = 0;
+		while(enumeration.hasMoreElements())
+		{
+			tmpList = enumeration.nextElement();
+			for (int index = 0; index < tmpList.size(); index++)
+				if(tmpList.get(index).isOnline())
+					numberOfOnlinePlayers++;
+		}
+		return numberOfOnlinePlayers;
+	}
+	
+	// returns the number of current offline players in this server
+	private int getNumberOfOfflinePlayer()
+	{
+		List <Account> tmpList;
+		Enumeration<List<Account>> enumeration = database.elements();
+		int numberOfOfflinePlayers = 0;
+		while(enumeration.hasMoreElements())
+		{
+			tmpList = enumeration.nextElement();
+			for (int index = 0; index < tmpList.size(); index++)
+				if(!tmpList.get(index).isOnline())
+					numberOfOfflinePlayers++;
+		}
+		return numberOfOfflinePlayers;
+	}
+	
+	// Returns the account with the given pUsername, returns null if pUsername does not exist
+	private Account getAccount(String pUsername)
+	{
+		String tmpUpperCaseUsername = pUsername.toUpperCase();
+		List <Account> tmpList = database.get(String.valueOf(tmpUpperCaseUsername.charAt(0)));
+		for (int index = 0; index < tmpList.size(); index++)
+		{
+			if(tmpList.get(index).getUserName().equals(pUsername))
+			{
+				tmpUpperCaseUsername = null;
+				return tmpList.get(index);
+			}
+		}
+		tmpUpperCaseUsername = null;
+		tmpList = null;
+		return null;
+	}
+	
+	// Checks if the given pUsername exists in the database
+	private boolean IPAddressExists(String pIPAddress)
+	{
+		List <Account> tmpList;
+		Enumeration<List<Account>> enumeration = database.elements();
+		while(enumeration.hasMoreElements())
+		{
+			tmpList = enumeration.nextElement();
+			for (int index = 0; index < tmpList.size(); index++)
+			{
+				if(tmpList.get(index).getIPAddress().equals(pIPAddress))
+				{
+					tmpList = null;
+					enumeration = null;
+					return true;
+				}
+			}
+		}
+		tmpList = null;
+		enumeration = null;
+		return false;
+	}
+	
+	// Checks for the validity of the given pIPAddress
+	private static boolean validate(final String pIPAddress) 
+	{          
+	      Pattern pattern = Pattern.compile(Parameters.PATTERN_FOR_IPADDRESS_VALIDATION);
+	      Matcher matcher = pattern.matcher(pIPAddress);
+	      pattern = null;
+	      return matcher.matches();             
+	}
+}

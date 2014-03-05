@@ -1,0 +1,9 @@
+Mar 04, 2014 12:53:12 PM clients.PlayerClient createLog
+INFO: Log file created for PlayerClient
+Mar 04, 2014 12:53:12 PM clients.PlayerClient <init>
+INFO: Client ORB init
+Mar 04, 2014 12:53:12 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "Bruce", LastName "Wayne", Age "34", Username "Batman", Password "DarkKnight", IP-address "93.100.100.100", Player is currently Offline
+Mar 04, 2014 12:53:13 PM clients.PlayerClient playerSignIn
+INFO: Player Sign in : Player Batman Is Now Online

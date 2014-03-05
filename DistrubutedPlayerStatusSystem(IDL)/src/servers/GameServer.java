@@ -1,6 +1,7 @@
 package servers;
 
 import org.omg.CORBA.ORB;
+
 import org.omg.CORBA.ORBPackage.InvalidName;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
@@ -26,72 +27,52 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-
-/*
- * This is the GameServer class which implements the GameServerRMI interface
- * @author Mehrdad Dehdashti
- */
-public class GameServer extends interfaceIDLPOA implements Runnable
-{	
-	private String aServerName;
-	private int aRMIPort; //RMI port
-	private int aUDPPort;
-	private String aGeoLocation;
-	private Hashtable<String, List<Account>> database;
-	private Logger log;
+/** Thread Class that runs the ORB object */
+class ORBThread extends Thread
+{
+	private ORB orb;
 	
-	// Main Method
-	public static void main(String[] args) throws InvalidName, ServantAlreadyActive, WrongPolicy, 
-													ObjectNotActive, FileNotFoundException, AdapterInactive 
+	public ORBThread(ORB pOrb)
 	{
-		new Thread(new GameServer("NA", Parameters.GeoLocationOfGameServerNA, Parameters.RMIport, Parameters.UDPportNA)).start();
-		new Thread(new GameServer("EU", Parameters.GeoLocationOfGameServerEU, Parameters.RMIport, Parameters.UDPportEU)).start();
-		new Thread(new GameServer("AS", Parameters.GeoLocationOfGameServerAS, Parameters.RMIport, Parameters.UDPportAS)).start();
+		orb = pOrb;
 	}
 	
-	/**
-	 * Constructor of GameServer
-	 * @param pServerName
-	 */
-	public GameServer(String pServerName,  String pGeoLocation, int pRMIPort, int pUDPPort)
+	public void run()
+	{
+		orb.run();
+	}
+}
+
+/** Thread Class that runs the UDP object */
+class UDPThread extends Thread
+{
+	private String aServerName;
+	private int aUDPPort;
+	private int aOnline;
+	private int aOffline;
+	private boolean bCrashed;
+	
+	public UDPThread(String pServerName, int pUDPPort)
 	{
 		aServerName = pServerName;
-		aRMIPort = pRMIPort;
 		aUDPPort = pUDPPort;
-		aGeoLocation = pGeoLocation;
-		createLog();
-		database = new Hashtable<String, List<Account>>();
-		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
-		{
-			database.put(String.valueOf(alphabet), new ArrayList <Account>());
-		}
-		log.info("Database initialized\n" + database.toString());
+		aOnline = 0;
+		aOffline = 0;
+		bCrashed = false;
+		
 	}
 	
-	private void createORB()
+	public void setNumberOfPlayers(int pOnline, int pOffline)
 	{
-		/* TODO */
+		aOnline = pOnline;
+		aOffline = pOffline;
 	}
 	
-	// Creates the log file for this server
-	private void createLog()
+	public boolean crashed()
 	{
-		try {
-			log = Logger.getLogger(aServerName);
-			FileHandler fileHandler = new FileHandler(aServerName+".log");
-			log.addHandler(fileHandler);
-	        SimpleFormatter formatter = new SimpleFormatter();  
-	        fileHandler.setFormatter(formatter);  
-	        log.info("Log file created for GameServer " + aServerName + " with port number " + aRMIPort + "\n" +
-	        		 "To connect to this server, the clients have to aquire IP address in form of " + aGeoLocation + ".xxx.xxx.xxx");
-		} catch (SecurityException | IOException e) {
-			log.info("Log File Error: " + e.getMessage());
-		}
+		return bCrashed;
 	}
 	
-	/**
-	 *  Create the Datagram Socket and bind it to a local port then starts the UDP server
-	 */
 	public void run()
 	{
 		try {
@@ -103,17 +84,140 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 			{
 				request = new DatagramPacket(buffer, buffer.length);
 				datagramSocket.receive(request);
-				buffer = (aServerName + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + " offline. ").getBytes();
+				buffer = (aServerName + ": " + aOnline + " online, " + aOffline + " offline. ").getBytes();
 				reply = new DatagramPacket(buffer, buffer.length, request.getAddress(), request.getPort());
 				datagramSocket.send(reply);
 			}
-		} catch (SocketException e) {
-			System.out.println("SocketException : " + e.getMessage());
 		} catch (IOException e) {
 			System.out.println("IOException : " + e.getMessage());
+			bCrashed = true;
+		}
+	}
+}
+
+/*
+ * This is the GameServer class which implements the GameServerRMI interface
+ * @author Mehrdad Dehdashti
+ */
+public class GameServer extends interfaceIDLPOA implements Runnable
+{	
+	private String aServerName;
+	private int aUDPPort;
+	private String aGeoLocation;
+	private Hashtable<String, List<Account>> database;
+	private Logger log;
+	private ORB orb;
+	private ORBThread aOrbThread; 
+	private UDPThread aUDPThread; 
+	
+	// Main Method
+	public static void main(String[] args) throws InvalidName, ServantAlreadyActive, WrongPolicy, 
+													ObjectNotActive, FileNotFoundException, AdapterInactive 
+	{
+		new Thread(new GameServer("NA", Parameters.GeoLocationOfGameServerNA, args, Parameters.UDPportNA)).start();
+		new Thread(new GameServer("EU", Parameters.GeoLocationOfGameServerEU, args, Parameters.UDPportEU)).start();
+		new Thread(new GameServer("AS", Parameters.GeoLocationOfGameServerAS, args, Parameters.UDPportAS)).start();
+	}
+	
+	/**
+	 * Constructor of GameServer
+	 * @param pServerName
+	 */
+	public GameServer(String pServerName,  String pGeoLocation, String[] pArgs, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aGeoLocation = pGeoLocation;
+		aUDPPort = pUDPPort;
+		createLog();
+		database = new Hashtable<String, List<Account>>();
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			database.put(String.valueOf(alphabet), new ArrayList <Account>());
+		}
+		log.info("Database initialized\n" + database.toString());
+		createORB(pArgs);
+	}
+	
+	// For constructing the IDL interface object
+	public GameServer(String pServerName,  String pGeoLocation, Logger pLog, Hashtable<String, List<Account>> pDatabase, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aGeoLocation = pGeoLocation;
+		log = pLog;
+		database = pDatabase;
+		aUDPPort = pUDPPort;
+	}
+	
+	private void createORB(String[] pArgs)
+	{
+		try {
+			// Initialize the ORB object
+			orb = ORB.init(pArgs, null);
+			POA rootPOA = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+			GameServer aSampleInterface = new GameServer(aServerName, aGeoLocation, log, database, aUDPPort);
+			byte [] id = rootPOA.activate_object(aSampleInterface);
+			// Obtain reference to CORBA object
+			org.omg.CORBA.Object reference_CORBA = rootPOA.id_to_reference(id);
+			// Write the CORBA object to a file
+			String stringORB = orb.object_to_string(reference_CORBA);
+			PrintWriter file = new PrintWriter(aServerName + "_IOR.txt");
+			file.print(stringORB);
+			file.close();
+			rootPOA.the_POAManager().activate();
+			log.info("Server ORB init completed with file " + aServerName + ".txt");
+		} catch (InvalidName | ServantAlreadyActive | WrongPolicy | 
+				ObjectNotActive | FileNotFoundException | AdapterInactive e) {
+			log.info("ORB Creation Error: " + e.getMessage());
 		}
 	}
 	
+	// Creates the log file for this server
+	private void createLog()
+	{
+		try {
+			log = Logger.getLogger(aServerName);
+			FileHandler fileHandler = new FileHandler(aServerName+".log");
+			log.addHandler(fileHandler);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fileHandler.setFormatter(formatter);  
+	        log.info("Log file created for GameServer " + aServerName +
+	        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + aGeoLocation + ".xxx.xxx.xxx");
+		} catch (SecurityException | IOException e) {
+			log.info("Log File Error: " + e.getMessage());
+		}
+	}
+	
+	/** Create the UDP and ORB threads and checks if the UDP thread crashes so it would replace it with a new UDP thread */
+	public void run()
+	{
+		aOrbThread = new ORBThread(orb);
+		aUDPThread = new UDPThread(aServerName, aUDPPort);
+		aOrbThread.start();
+		log.info("ORB Running");
+		aUDPThread.start();
+		log.info("UDP Running");
+		while(true)
+		{
+			if(aUDPThread.crashed())
+			{
+				aUDPThread = new UDPThread(aServerName, aUDPPort);
+				aUDPThread.start();
+			}
+			aUDPThread.setNumberOfPlayers(this.getNumberOfOnlinePlayer(), getNumberOfOfflinePlayer());
+		}
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will create a player account with the given parameters
+	 * and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
 	@Override
 	public String createPlayerAccount(String pFirstName, String pLastName, int pAge, 
 			                          String pUsername, String pPassword, String pIPAddress) 
@@ -161,7 +265,10 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 		
 		List <Account> tmpList;
 		tmpList = database.get(String.valueOf(pUsername.toUpperCase().charAt(0)));
-		tmpList.add(new Account(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress));
+		synchronized(this)
+		{
+			tmpList.add(new Account(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress));
+		}
 		
 		log.info("Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
 				"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + 
@@ -171,6 +278,14 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 				pIPAddress + "\", Player is currently Offline";
 	}
 
+	/**
+	 * This method when invoked from a PlayerClient will set a player online if conditions are met 
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
 	@Override
 	public String playerSignIn(String pUsername, String pPassword, String pIPAddress)
 	{
@@ -219,6 +334,13 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 		}
 	}
 
+	/**
+	 * This method when invoked from a PlayerClient will set this player off-line if conditions are met
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
 	@Override
 	public String playerSignOut(String pUsername, String pIPAddress) 
 	{
@@ -261,12 +383,81 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 		}
 	}
 	
-	/* TODO */
+	/**
+	 * This method when invoked from a PlayerClient will transfer this player's account to the given server
+	 * if conditions are met with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pOldIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pNewIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
 	@Override
 	public String transferAccount(String pUsername, String pPassword, String pOldIPAddress, String pNewIPAddress) {
-		return null;
+		
+		if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+		{
+			log.info("Error Transferring Account : Username cannot start with " + pUsername.charAt(0));
+			return "Error Transferring Account : Username cannot start with " + pUsername.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsername);
+		if(tmpAccount == null)
+		{
+			log.info("Error Transferring Account : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Transferring Account : Username Was Not Found";
+		}
+		if(!tmpAccount.getPassword().equals(pPassword))
+		{
+			log.info("Error Transferring Account : Incorrect Password");
+			tmpAccount = null;
+			return "Error Transferring Account : Incorrect Password";
+		}
+		if(!validate(pOldIPAddress))
+		{
+			log.info("Error Transferring Account : Invalid IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Invalid IP-address";
+		}
+		if(!tmpAccount.getIPAddress().equals(pOldIPAddress))
+		{
+			log.info("Error Transferring Account : Nonmatching IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Nonmatching IP-address";
+		}
+		if(!validate(pNewIPAddress))
+		{
+			log.info("Error Transferring Account : Invalid New IP-address");
+			tmpAccount = null;
+			return "Error Transferring Account : Invalid New IP-address";
+		}
+		
+		boolean bSuccess = false;
+		synchronized(this)
+		{
+			bSuccess = database.get(String.valueOf(pUsername.toUpperCase().charAt(0))).remove(tmpAccount);
+		}		
+		if(bSuccess)
+		{
+			log.info("Player Account deleted :\nUsername \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pOldIPAddress + "\"");
+			return "Player Account deleted : Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pOldIPAddress + "\"\n" +
+			tmpAccount.getFirstName() + "\n" + 
+			tmpAccount.getLastName() + "\n" + 
+			Integer.toString(tmpAccount.getAge());
+		}
+		else
+		{
+			log.info("Error Transferring Account : removal faild");
+			return "ERROR_TRANSFER_ACCOUNT";
+		}
 	}
 
+	/**
+	 * This method when invoked from a AdministratorClient will return the number of players online and off-line
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return Confirmation in form of a string
+	 */
 	@Override
 	public String getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress)
 	{
@@ -321,7 +512,7 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 			else
 			{
 				log.info("Error Getting Player Status : Invalid Port number");
-				return "Error Getting Player Status : Invalid Port number";
+				return "Error Getting Player Status : Invalid Port number" + " " + aUDPPort;
 			}
 			datagramSocket.send(request1);
 			message = new byte [1000];
@@ -346,10 +537,59 @@ public class GameServer extends interfaceIDLPOA implements Runnable
 		return "Error Getting Player Status : Socket Excpetion";
 	}
 
-	/* TODO */
+	/**
+	 * This method when invoked from a AdministratorClient will suspend the player account given
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pUsernameToSuspend a minimum length of 6 characters and a maximum length of 15 characters
+	 * @return Confirmation in form of a string
+	 */
 	@Override
 	public String suspendAccount(String pAdminUsername, String pAdminPassword, String pIPAddress, String pUsernameToSuspend) {
-		return null;
+		if(!pAdminUsername.equals("Admin"))
+		{
+			log.info("Error Suspending Account : Incorrect Administrator Username");
+			return "Error Suspending Account : Incorrect Administrator Username";
+		}
+		if(!pAdminPassword.equals("Admin"))
+		{
+			log.info("Error Suspending Account : Incorrect Administrator Password");
+			return "Error Suspending Account : Incorrect Administrator Password";
+		}
+		if(!validate(pIPAddress))
+		{
+			log.info("Error Suspending Account : Invalid IP-address");
+			return "Error Suspending Account : Invalid IP-address";
+		}
+		if((pUsernameToSuspend.charAt(0) > 'Z' && pUsernameToSuspend.charAt(0) < 'a') || pUsernameToSuspend.charAt(0) < 'A' || pUsernameToSuspend.charAt(0) > 'z')
+		{
+			log.info("Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0));
+			return "Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0);
+		}
+		Account tmpAccount = getAccount(pUsernameToSuspend);
+		if(tmpAccount == null)
+		{
+			log.info("Error Suspending Account : Username Was Not Found");
+			tmpAccount = null;
+			return "Error Suspending Account : Username Was Not Found";
+		}
+		
+		boolean bSuccess = false;
+		synchronized(this)
+		{
+			bSuccess = database.get(String.valueOf(pUsernameToSuspend.toUpperCase().charAt(0))).remove(tmpAccount);
+		}
+		if(bSuccess)
+		{
+			log.info("Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"");
+			return "Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"\n";
+		}
+		else
+		{
+			log.info("Error Suspending Account : suspension faild");
+			return "Error Suspending Account : suspension faild";
+		}
 	}
 	
 	// returns the number of current online players in this server

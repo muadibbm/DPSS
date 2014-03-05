@@ -1,6 +1,12 @@
-Feb 18, 2014 10:25:11 PM servers.GameServer createLog
-INFO: Log file created for GameServer AS with port number 1020
+Mar 04, 2014 7:48:28 PM servers.GameServer createLog
+INFO: Log file created for GameServer AS
 To connect to this server, the clients have to aquire IP address in form of 182.xxx.xxx.xxx
-Feb 18, 2014 10:25:11 PM servers.GameServer <init>
+Mar 04, 2014 7:48:28 PM servers.GameServer <init>
 INFO: Database initialized
 {Z=[], Y=[], X=[], W=[], V=[], U=[], T=[], S=[], R=[], Q=[], P=[], O=[], N=[], M=[], L=[], K=[], J=[], I=[], H=[], G=[], F=[], E=[], D=[], C=[], B=[], A=[]}
+Mar 04, 2014 7:48:28 PM servers.GameServer createORB
+INFO: Server ORB init completed with file AS.txt
+Mar 04, 2014 7:48:28 PM servers.GameServer run
+INFO: ORB Running
+Mar 04, 2014 7:48:28 PM servers.GameServer run
+INFO: UDP Running

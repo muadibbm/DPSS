@@ -1,0 +1,28 @@
+Mar 04, 2014 7:48:33 PM clients.PlayerClient createLog
+INFO: Log file created for PlayerClient
+Mar 04, 2014 7:48:33 PM clients.PlayerClient <init>
+INFO: Client ORB init
+Mar 04, 2014 7:48:33 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "Copperfield", Age "14", Username "David14", Password "DifficultPassword", IP-address "132.192.168.1", Player is currently Offline
+Mar 04, 2014 7:48:33 PM clients.PlayerClient playerSignIn
+INFO: Player Sign in : Player David14 Is Now Online
+Mar 04, 2014 7:48:33 PM clients.PlayerClient transferAccount
+INFO: Player Account deleted : Username "David14", Password "DifficultPassword", IP-address "132.192.168.1"
+Mar 04, 2014 7:48:33 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "", Age "14", Username "David14", Password "DifficultPassword", IP-address "93.100.100.100", Player is currently Offline
+Mar 04, 2014 7:48:33 PM clients.PlayerClient playerSignIn
+INFO: Error Player Sign in : Username Was Not Found
+Mar 04, 2014 7:48:33 PM clients.PlayerClient playerSignIn
+INFO: Player Sign in : Player David14 Is Now Online
+Mar 04, 2014 7:48:33 PM clients.PlayerClient playerSignIn
+INFO: Error Player Sign in : Username Was Not Found
+Mar 04, 2014 7:48:33 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "Copperfield", Age "14", Username "David14", Password "DifficultPassword", IP-address "132.192.168.1", Player is currently Offline
+Mar 04, 2014 7:48:33 PM clients.PlayerClient transferAccount
+INFO: Player Account deleted : Username "David14", Password "DifficultPassword", IP-address "132.192.168.1"
+Mar 04, 2014 7:48:33 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "", Age "14", Username "David14", Password "DifficultPassword", IP-address "93.100.100.100", Player is currently Offline

@@ -1,0 +1,301 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Error logged from Debug UI: ",1393906723184
+error,log,,,"Error logged from Debug UI: ",1393906723200
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393906723948
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393906726597
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906727105
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393906728066
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393906731165
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393906731759
+closed,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393906731760
+error,log,,,"Error logged from Debug UI: ",1393906732294
+error,log,,,"Error logged from Debug UI: ",1393906732337
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393906738656
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906739169
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906752321
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393906754501
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393906755202
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906755640
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393906758773
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393906763713
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393906764850
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906765555
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906771196
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906778738
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906783228
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906792115
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393906794397
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906801048
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906937672
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906939707
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906953894
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906966425
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906972444
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393906973866
+error,log,,,"Error logged from Debug UI: ",1393907011701
+error,log,,,"Error logged from Debug UI: ",1393907011736
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907013134
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907041061
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907042938
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907047282
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907074766
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907079650
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907143264
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907144536
+error,log,,,"Error logged from Debug UI: ",1393907151687
+error,log,,,"Error logged from Debug UI: ",1393907151706
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907166466
+error,log,,,"Error logged from Debug UI: ",1393907167021
+error,log,,,"Error logged from Debug UI: ",1393907167038
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907169263
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907171735
+error,log,,,"Error logged from Debug UI: ",1393907179905
+error,log,,,"Error logged from Debug UI: ",1393907179922
+error,log,,,"Error logged from Debug UI: ",1393907180525
+error,log,,,"Error logged from Debug UI: ",1393907180542
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907182302
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907206706
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907213333
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907213461
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907221252
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907221455
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907223177
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907224695
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907227060
+opened,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907227273
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907227359
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907228969
+closed,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907228969
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907230375
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907230508
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907238535
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907238650
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907258700
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907258811
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907287612
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907287711
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907311867
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907339031
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907340798
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907341945
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907355313
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907367799
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907372547
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907372637
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907373504
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907406141
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907410154
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907421871
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907425569
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907428442
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907432032
+error,log,,,"Error logged from Debug UI: ",1393907432347
+error,log,,,"Error logged from Debug UI: ",1393907432370
+error,log,,,"Error logged from Debug UI: ",1393907432988
+error,log,,,"Error logged from Debug UI: ",1393907433003
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907437943
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907438880
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907449466
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907450761
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907459148
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907459813
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907462565
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907467930
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907468400
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907469324
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907469852
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907473062
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907473610
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907512101
+error,log,,,"Error logged from Debug UI: ",1393907512501
+error,log,,,"Error logged from Debug UI: ",1393907512528
+error,log,,,"Error logged from Debug UI: ",1393907513136
+error,log,,,"Error logged from Debug UI: ",1393907513148
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907517540
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907518419
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907519087
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907519334
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907519572
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.undo",1393907519870
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907520815
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907528582
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907531404
+error,log,,,"Error logged from Debug UI: ",1393907534091
+error,log,,,"Error logged from Debug UI: ",1393907534119
+error,log,,,"Error logged from Debug UI: ",1393907534513
+error,log,,,"Error logged from Debug UI: ",1393907534528
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907538143
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907539198
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907548661
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907549175
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907555527
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907556435
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907562369
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907564178
+error,log,,,"Error logged from Debug UI: ",1393907565370
+error,log,,,"Error logged from Debug UI: ",1393907565394
+error,log,,,"Error logged from Debug UI: ",1393907566228
+error,log,,,"Error logged from Debug UI: ",1393907566253
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907576003
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907589055
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907591292
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907592473
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907611926
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907615488
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907620074
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907621737
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907622444
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907624377
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907624744
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907628867
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907629177
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907631042
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907631432
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907632425
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907632722
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907634566
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907635609
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907636002
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907637660
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907637988
+error,log,,,"Error logged from Debug UI: ",1393907651535
+error,log,,,"Error logged from Debug UI: ",1393907651559
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907651962
+error,log,,,"Error logged from Debug UI: ",1393907652102
+error,log,,,"Error logged from Debug UI: ",1393907652133
+error,log,,,"Error logged from Debug UI: ",1393907652436
+error,log,,,"Error logged from Debug UI: ",1393907652447
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907654521
+error,log,,,"Error logged from Debug UI: ",1393907654843
+error,log,,,"Error logged from Debug UI: ",1393907654862
+error,log,,,"Error logged from Debug UI: ",1393907655299
+error,log,,,"Error logged from Debug UI: ",1393907655320
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907656676
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907664154
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907667554
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907672132
+error,log,,,"Error logged from Debug UI: ",1393907672290
+error,log,,,"Error logged from Debug UI: ",1393907672307
+error,log,,,"Error logged from Debug UI: ",1393907672738
+error,log,,,"Error logged from Debug UI: ",1393907672754
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907674763
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907690480
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907694980
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907695059
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907698650
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907698766
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907707733
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907710513
+error,log,,,"Error logged from Debug UI: ",1393907710612
+error,log,,,"Error logged from Debug UI: ",1393907710632
+error,log,,,"Error logged from Debug UI: ",1393907711092
+error,log,,,"Error logged from Debug UI: ",1393907711105
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907712026
+error,log,,,"Error logged from Debug UI: ",1393907712308
+error,log,,,"Error logged from Debug UI: ",1393907712330
+error,log,,,"Error logged from Debug UI: ",1393907713306
+error,log,,,"Error logged from Debug UI: ",1393907713318
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907715050
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907726670
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907731830
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907731932
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907735031
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907736652
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907759658
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393907760473
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907760940
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907762871
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907764601
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907767993
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.findReplace",1393907768021
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907792296
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907800421
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907801617
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907802090
+error,log,,,"Error logged from Debug UI: ",1393907802197
+error,log,,,"Error logged from Debug UI: ",1393907802216
+error,log,,,"Error logged from Debug UI: ",1393907802525
+error,log,,,"Error logged from Debug UI: ",1393907802538
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907803917
+error,log,,,"Error logged from Debug UI: ",1393907804034
+error,log,,,"Error logged from Debug UI: ",1393907804051
+error,log,,,"Error logged from Debug UI: ",1393907804674
+error,log,,,"Error logged from Debug UI: ",1393907804692
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907805699
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907850289
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907887638
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907888161
+error,log,,,"Error logged from Debug UI: ",1393907903699
+error,log,,,"Error logged from Debug UI: ",1393907903725
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907904172
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907919839
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907919993
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907924519
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907924695
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393907930003
+error,log,,,"Error logged from Debug UI: ",1393907930978
+error,log,,,"Error logged from Debug UI: ",1393907931001
+error,log,,,"Error logged from Debug UI: ",1393907932112
+error,log,,,"Error logged from Debug UI: ",1393907932132
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907932810
+error,log,,,"Error logged from Debug UI: ",1393907933183
+error,log,,,"Error logged from Debug UI: ",1393907933202
+error,log,,,"Error logged from Debug UI: ",1393907933620
+error,log,,,"Error logged from Debug UI: ",1393907933634
+error,log,,,"Error logged from Debug UI: ",1393907934829
+error,log,,,"Error logged from Debug UI: ",1393907934850
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393907936558
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393907951872
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907952381
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907984703
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393907995871
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907997791
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907998480
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393907999519
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393908008009
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393908013193
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393908049778
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393908050848
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1393908244371
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908251905
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908252052
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.copy",1393908266739
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.paste",1393908269239
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393908269759
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908271827
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908277549
+error,log,,,"Error logged from Debug UI: ",1393908278100
+error,log,,,"Error logged from Debug UI: ",1393908278127
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908280968
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908282576
+error,log,,,"Error logged from Debug UI: ",1393908282760
+error,log,,,"Error logged from Debug UI: ",1393908282779
+error,log,,,"Error logged from Debug UI: ",1393908283090
+error,log,,,"Error logged from Debug UI: ",1393908283108
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908286073
+error,log,,,"Error logged from Debug UI: ",1393908286200
+error,log,,,"Error logged from Debug UI: ",1393908286223
+error,log,,,"Error logged from Debug UI: ",1393908286718
+error,log,,,"Error logged from Debug UI: ",1393908286733
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908288061
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908310321
+error,log,,,"Error logged from Debug UI: ",1393908316398
+error,log,,,"Error logged from Debug UI: ",1393908316420
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908316797
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393908342409
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393908345597
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1393908348937
+error,log,,,"Error logged from Debug UI: ",1393908350440
+error,log,,,"Error logged from Debug UI: ",1393908350470
+error,log,,,"Error logged from Debug UI: ",1393908351417
+error,log,,,"Error logged from Debug UI: ",1393908351438
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908353217
+error,log,,,"Error logged from Debug UI: ",1393908353532
+error,log,,,"Error logged from Debug UI: ",1393908353556
+error,log,,,"Error logged from Debug UI: ",1393908353991
+error,log,,,"Error logged from Debug UI: ",1393908354004
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908355665
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908357448
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908362682
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1393908362790
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1393908364013

@@ -2,6 +2,11 @@ package clients;
 
 import org.omg.CORBA.ORB;
 
+import dpss.interfaceIDL;
+import dpss.interfaceIDLHelper;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
@@ -22,15 +27,22 @@ public class AdministratorClient extends Thread
 	private String input;
 	private int parameterCount = 0;
 	private Account aTmpAccount; // Local Account
+	// CORBA variables
+	private BufferedReader bufferedReader;
+	private ORB orb;
+	private String stringORB;
+	private interfaceIDL aInterfaceIDL;
 	
 	/**
 	 * This method is used for running test cases
 	 */
-	public AdministratorClient (String pName)
+	public AdministratorClient (String pName, String[] pArgs)
 	{
 		this.setName(pName);
 		scanner = new Scanner(System.in);
 		createLog();
+		orb = ORB.init(pArgs, null);
+		log.info("Client ORB init");
 		this.start();
 	}
 	
@@ -43,22 +55,88 @@ public class AdministratorClient extends Thread
 		{
 			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerNA))
 			{
-				//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/NA");
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("NA_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 			}
 			else if(pIPAddress.length() >= 2 && pIPAddress.substring(0,2).equals(Parameters.GeoLocationOfGameServerEU))
 			{
-				//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/EU");
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("EU_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 			}
 			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
 			{
-				//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/AS");
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("AS_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 			}
 			else
 			{
 				log.info("Invalid GeoLocation");
 				return;
 			}
-			//log.info(gameServerStub.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress));
+			log.info(aInterfaceIDL.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress));
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getMessage());
+		}
+	}
+	
+	/**
+	 * Manual invocation of GameServer operation suspendAccount used for test cases 
+	 */
+	public void suspendAccount(String pAdminUsername, String pAdminPassword, String pIPAddress, String pUsernameToSuspend)
+	{
+		try 
+		{
+			if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerNA))
+			{
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("NA_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
+			}
+			else if(pIPAddress.length() >= 2 && pIPAddress.substring(0,2).equals(Parameters.GeoLocationOfGameServerEU))
+			{
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("EU_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
+			}
+			else if(pIPAddress.length() >= 3 && pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				// Get the reference to the CORBA object from the file
+				bufferedReader = new BufferedReader(new FileReader("AS_IOR.txt"));
+				stringORB = bufferedReader.readLine();
+				bufferedReader.close();
+				// Transform the reference string to CORBA object
+				org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+				aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
+			}
+			else
+			{
+				log.info("Invalid GeoLocation");
+				return;
+			}
+			log.info(aInterfaceIDL.suspendAccount(pAdminUsername, pAdminPassword, pIPAddress, pUsernameToSuspend));
 		} catch (Exception e) {
 			System.out.println("Exception: " + e.getMessage());
 		}
@@ -93,22 +171,40 @@ public class AdministratorClient extends Thread
 					aTmpAccount.setIPAddress(input);
 					if(input.length() >= 3 && input.substring(0,3).equals(Parameters.GeoLocationOfGameServerNA))
 					{
-						//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/NA");
+						// Get the reference to the CORBA object from the file
+						bufferedReader = new BufferedReader(new FileReader("NA_IOR.txt"));
+						stringORB = bufferedReader.readLine();
+						bufferedReader.close();
+						// Transform the reference string to CORBA object
+						org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+						aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 					}
 					else if(input.length() >= 2 && input.substring(0,2).equals(Parameters.GeoLocationOfGameServerEU))
 					{
-						//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/EU");
+						// Get the reference to the CORBA object from the file
+						bufferedReader = new BufferedReader(new FileReader("EU_IOR.txt"));
+						stringORB = bufferedReader.readLine();
+						bufferedReader.close();
+						// Transform the reference string to CORBA object
+						org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+						aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 					}
 					else if(input.length() >= 3 && input.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
 					{
-						//gameServerStub = (GameServerRMI) Naming.lookup("rmi://localhost:"+Parameters.RMIport+"/AS");
+						// Get the reference to the CORBA object from the file
+						bufferedReader = new BufferedReader(new FileReader("AS_IOR.txt"));
+						stringORB = bufferedReader.readLine();
+						bufferedReader.close();
+						// Transform the reference string to CORBA object
+						org.omg.CORBA.Object reference_CORBA = orb.string_to_object(stringORB);
+						aInterfaceIDL = interfaceIDLHelper.narrow(reference_CORBA);
 					}
 					else
 					{
 						log.info("Invalid GeoLocation");
 						break;
 					}
-					//log.info(gameServerStub.getPlayerStatus(aTmpAccount.getUserName(), aTmpAccount.getPassword(), aTmpAccount.getIPAddress()));
+					log.info(aInterfaceIDL.getPlayerStatus(aTmpAccount.getUserName(), aTmpAccount.getPassword(), aTmpAccount.getIPAddress()));
 					parameterCount = 0;
 					break;
 				}

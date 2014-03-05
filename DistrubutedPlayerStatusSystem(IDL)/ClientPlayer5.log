@@ -1,0 +1,11 @@
+Mar 04, 2014 12:53:12 PM clients.PlayerClient createLog
+INFO: Log file created for PlayerClient
+Mar 04, 2014 12:53:12 PM clients.PlayerClient <init>
+INFO: Client ORB init
+Mar 04, 2014 12:53:13 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "noFirstName", LastName "noLastName", Age "34", Username "JokerIsAwesome", Password "KillDarkKnight", IP-address "182.192.168.5", Player is currently Offline
+Mar 04, 2014 12:53:13 PM clients.PlayerClient playerSignIn
+INFO: Player Sign in : Player JokerIsAwesome Is Now Online
+Mar 04, 2014 12:53:13 PM clients.PlayerClient playerSignOut
+INFO: Player Sign out : Player JokerIsAwesome Is Now Offline

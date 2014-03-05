@@ -1,6 +1,28 @@
-Feb 18, 2014 10:25:11 PM servers.GameServer createLog
-INFO: Log file created for GameServer EU with port number 1020
+Mar 04, 2014 7:48:28 PM servers.GameServer createLog
+INFO: Log file created for GameServer EU
 To connect to this server, the clients have to aquire IP address in form of 93.xxx.xxx.xxx
-Feb 18, 2014 10:25:11 PM servers.GameServer <init>
+Mar 04, 2014 7:48:28 PM servers.GameServer <init>
 INFO: Database initialized
 {Z=[], Y=[], X=[], W=[], V=[], U=[], T=[], S=[], R=[], Q=[], P=[], O=[], N=[], M=[], L=[], K=[], J=[], I=[], H=[], G=[], F=[], E=[], D=[], C=[], B=[], A=[]}
+Mar 04, 2014 7:48:28 PM servers.GameServer createORB
+INFO: Server ORB init completed with file EU.txt
+Mar 04, 2014 7:48:28 PM servers.GameServer run
+INFO: ORB Running
+Mar 04, 2014 7:48:28 PM servers.GameServer run
+INFO: UDP Running
+Mar 04, 2014 7:48:33 PM servers.GameServer createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "", Age "14", Username "David14", Password "DifficultPassword", IP-address "93.100.100.100", Player is currently Offline
+Mar 04, 2014 7:48:33 PM servers.GameServer playerSignIn
+INFO: Player Sign in : Player David14 Is Now Online
+Mar 04, 2014 7:48:33 PM servers.GameServer suspendAccount
+INFO: Player Account suspended :
+Username "David14", Password "DifficultPassword", IP-address "93.100.100.100"
+Mar 04, 2014 7:48:33 PM servers.GameServer playerSignIn
+INFO: Error Player Sign in : Username Was Not Found
+Mar 04, 2014 7:48:33 PM servers.GameServer createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "", Age "14", Username "David14", Password "DifficultPassword", IP-address "93.100.100.100", Player is currently Offline
+Mar 04, 2014 7:48:33 PM servers.GameServer suspendAccount
+INFO: Player Account suspended :
+Username "David14", Password "DifficultPassword", IP-address "93.100.100.100"

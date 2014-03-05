@@ -1,0 +1,9 @@
+Mar 04, 2014 12:53:12 PM clients.PlayerClient createLog
+INFO: Log file created for PlayerClient
+Mar 04, 2014 12:53:12 PM clients.PlayerClient <init>
+INFO: Client ORB init
+Mar 04, 2014 12:53:13 PM clients.PlayerClient createPlayerAccount
+INFO: Player Account created :
+FirstName "Clark", LastName "Kent", Age "38", Username "Superman", Password "Cryptonyte", IP-address "182.192.100.1", Player is currently Offline
+Mar 04, 2014 12:53:13 PM clients.PlayerClient playerSignIn
+INFO: Player Sign in : Player Superman Is Now Online

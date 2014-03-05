@@ -17,7 +17,12 @@
 <fullyQualifiedTypeName name="GameServer"/>
 <fullyQualifiedTypeName name="SystemParameters"/>
 <fullyQualifiedTypeName name="org.omg.CORBA.Any"/>
-<fullyQualifiedTypeName name="dpss.interfaceIDLPOA"/>
 <fullyQualifiedTypeName name="system.Account"/>
 <fullyQualifiedTypeName name="system.Parameters"/>
+<fullyQualifiedTypeName name="dpss.interfaceIDLImp"/>
+<fullyQualifiedTypeName name="dpss.interfaceIDLHelper"/>
+<fullyQualifiedTypeName name="sample.sampleInterfaceImp"/>
+<fullyQualifiedTypeName name="dpss.interfaceIDLPOA"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.io.StringReader"/>
 </qualifiedTypeNameHistroy>
