@@ -1,0 +1,251 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884189893
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884219495
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884225505
+error,log,,,"Error logged from Debug UI: ",1395884234045
+error,log,,,"Error logged from Debug UI: ",1395884234065
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884239855
+error,log,,,"Error logged from Debug UI: ",1395884240195
+error,log,,,"Error logged from Debug UI: ",1395884240205
+error,log,,,"Error logged from Debug UI: ",1395884240925
+error,log,,,"Error logged from Debug UI: ",1395884240935
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884240965
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884242555
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884243475
+opened,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884243675
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884243745
+error,log,,,"Error logged from Debug UI: ",1395884244295
+error,log,,,"Error logged from Debug UI: ",1395884244305
+error,log,,,"Error logged from Debug UI: ",1395884244755
+error,log,,,"Error logged from Debug UI: ",1395884244765
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884247355
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884249305
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884251605
+error,log,,,"Removing obsolete files from server...",1395884259734
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884266165
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884267595
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884268135
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884269665
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884269665
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884270176
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884270552
+error,log,,,"Could not move: C:\\Users\\muadibbm\\workspace\\DPSS\\Servers\\Tomcat v7.0 Server at localhost-config\\web.xml.",1395884271522
+error,log,,,"Problems encountered while deleting resources.",1395884271532
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884271562
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884272582
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884273172
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884277243
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884278563
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884278863
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280483
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280483
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280483
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884280493
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884281433
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1395884281443
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884281443
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884281963
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884283443
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884288483
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884289163
+opened,editor,org.eclipse.ui.editors,3.7.0.v20110928-1504,"org.eclipse.ui.DefaultTextEditor",1395884290393
+activated,editor,org.eclipse.ui.editors,3.7.0.v20110928-1504,"org.eclipse.ui.DefaultTextEditor",1395884290433
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884292423
+closed,editor,org.eclipse.ui.editors,3.7.0.v20110928-1504,"org.eclipse.ui.DefaultTextEditor",1395884292423
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884293183
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884293403
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884294353
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1395884294363
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884294363
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884296183
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884299853
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884300523
+error,log,,,"Error logged from Debug UI: ",1395884300693
+error,log,,,"Error logged from Debug UI: ",1395884300703
+error,log,,,"Error logged from Debug UI: ",1395884301203
+error,log,,,"Error logged from Debug UI: ",1395884301213
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884302373
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884304613
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884325945
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884325945
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884325965
+opened,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884329945
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884329985
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884330025
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884330045
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884459737
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884466387
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884468417
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884477019
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884483219
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884485039
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884512241
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884513851
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884517681
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884518431
+closed,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884518431
+error,log,,,"Error logged from Debug UI: ",1395884523311
+error,log,,,"Error logged from Debug UI: ",1395884523321
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884525781
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884526681
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884527911
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884527921
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884530211
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884531701
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884532691
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884533041
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884545951
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884559921
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884563191
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884581552
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884619706
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884620868
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884622718
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884639038
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.properties",1395884639058
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884646568
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884648598
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884649658
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651688
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651688
+error,log,,,"Exception loading preferences from: /DistributedPlayerStatusSysterm(WebService)Client/.settings/org.eclipse.jdt.core.prefs.",1395884651688
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Exception loading preferences from: C:/Users/muadibbm/workspace/DPSS/DistributedPlayerStatusSysterm(WebService)Client/.settings/org.eclipse.jdt.core.prefs.",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884651698
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884652648
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1395884652658
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884652658
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884653318
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395884655848
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884657808
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884670909
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395884678907
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884689137
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395884692707
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884698117
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884712117
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884716807
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884721217
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884739057
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884742487
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.renameResource",1395884742507
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884744407
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884748267
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884749407
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1395884749417
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884749417
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884750447
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884758407
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884760557
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884764657
+started,bundle,org.eclipse.ant.ui,3.5.101.v20120110-1739,"org.eclipse.ant.ui",1395884772627
+started,bundle,org.eclipse.wst.jsdt.debug.rhino.ui,1.0.1.v201201112313,"org.eclipse.wst.jsdt.debug.rhino.ui",1395884772667
+error,log,,,"Exception loading preferences from: /DistributedPlayerStatusSysterm(WebService)/.settings/org.eclipse.jdt.core.prefs.",1395884772737
+error,log,,,"Exception loading preferences from: C:/Users/muadibbm/workspace/DPSS/DistributedPlayerStatusSysterm(WebService)/.settings/org.eclipse.jdt.core.prefs.",1395884772737
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772737
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772737
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772747
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772747
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772747
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884772747
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1395884772757
+error,log,,,"src [in DistributedPlayerStatusSysterm(WebService)] does not exist",1395884772787
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884773717
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.renameResource",1395884773727
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884783159
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884784859
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884785719
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884785759
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884785859
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884791120
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884791670
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884793220
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884795261
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884796701
+error,log,,,"Error logged from Debug UI: ",1395884798771
+error,log,,,"Error logged from Debug UI: ",1395884798781
+error,log,,,"Error logged from Debug UI: ",1395884799271
+error,log,,,"Error logged from Debug UI: ",1395884799281
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884799441
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884800831
+error,log,,,"Error logged from Debug UI: ",1395884801225
+error,log,,,"Error logged from Debug UI: ",1395884801245
+executed,command,org.eclipse.jdt.debug.ui,3.6.1.v20111006_r372,"org.eclipse.jdt.debug.ui.localJavaShortcut.run",1395884804315
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884806575
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884807495
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884810735
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884813315
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884833057
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884833057
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884833077
+opened,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884834247
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884834277
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884834317
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884834337
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884834887
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884836017
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884838627
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884847027
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884872378
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884873068
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884874908
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884881948
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884893500
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.refresh",1395884894190
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884900910
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884906210
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884907550
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884941172
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884956043
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884958845
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884959925
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884959935
+activated,view,org.eclipse.ui.console,3.5.100.v20111007_r372,"org.eclipse.ui.console.ConsoleView",1395884961395
+activated,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884963865
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884965195
+closed,editor,org.eclipse.ui.browser,3.3.101.v20111019-1723,"org.eclipse.ui.browser.editor",1395884965195
+activated,view,org.eclipse.wst.server.ui,1.3.0.v20120210_1439,"org.eclipse.wst.server.ui.ServersView",1395884968365
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884970385
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884970925
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973085
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973095
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.equinox.preferences"".",1395884973095
+activated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395884973225
+executed,command,org.eclipse.ltk.ui.refactoring,3.6.0.v20110928-1453,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1395884973235
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.edit.delete",1395884973235
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884975235
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395884980765
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884984075
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884988375
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884989435
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395884996095
+opened,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884996395
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395884996465
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395885009465
+executed,command,org.eclipse.ui,3.7.0.v20110928-1505,"org.eclipse.ui.file.save",1395885012385
+activated,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395885014015
+closed,editor,org.eclipse.jdt.ui,3.7.2.v20120109-1427,"org.eclipse.jdt.ui.CompilationUnitEditor",1395885014015
+activated,view,org.eclipse.ui.navigator.resources,3.4.300.v20110928-1505,"org.eclipse.ui.navigator.ProjectExplorer",1395885015755
+deactivated,workbench,org.eclipse.ui.workbench,3.7.1.v20120104-1859,"",1395885017375
+started,bundle,org.eclipse.jst.jsf.common.ui,1.2.100.v201104061711,"org.eclipse.jst.jsf.common.ui",1395885026695
+started,bundle,org.eclipse.jst.pagedesigner,1.3.104.v201201181342,"org.eclipse.jst.pagedesigner",1395885026695
+started,bundle,org.eclipse.jst.jsf.apache.trinidad.tagsupport,1.1.200.v201104061711,"org.eclipse.jst.jsf.apache.trinidad.tagsupport",1395885026845

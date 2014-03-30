@@ -1,0 +1,144 @@
+package servers;
+
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import system.Account;
+import system.Parameters;
+import system.PersistentHashtable;
+
+public class GameServerNA 
+{
+	private String aServerName;
+	private int aUDPPort;
+	private String aGeoLocation;
+	private PersistentHashtable database;
+	private Logger log;
+	private UDPThread aUDPThread; 
+	
+	public GameServerNA()
+	{
+		aServerName = "NA";
+		aGeoLocation = Parameters.GeoLocationOfGameServerNA;
+		aUDPPort = Parameters.UDPportNA;
+		createLog();
+		database = new PersistentHashtable("NA_PersistentHashtable");
+		log.info("Database initialized\n" + database.toString());
+	}
+	
+	// Creates the log file for this server
+	private void createLog()
+	{
+		try {
+			log = Logger.getLogger(aServerName);
+			FileHandler fileHandler = new FileHandler(aServerName+".log");
+			log.addHandler(fileHandler);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fileHandler.setFormatter(formatter);  
+	        log.info("Log file created for GameServer " + aServerName +
+	        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + aGeoLocation + ".xxx.xxx.xxx");
+		} catch (SecurityException | IOException e) {
+			log.info("Log File Error: " + e.getMessage());
+		}
+	}
+	
+	
+	/**
+	 * This method when invoked from a PlayerClient will set this player off-line if conditions are met
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	@Override
+	public String playerSignOut(String pUsername, String pIPAddress) 
+	{
+		/** TODO **/
+		return "";
+	}
+	
+	
+	/**
+	 * This method when invoked from a PlayerClient will transfer this player's account to the given server
+	 * if conditions are met with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pOldIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pNewIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	public String transferAccount(String pUsername, String pPassword, String pOldIPAddress, String pNewIPAddress) 
+	{
+		/** TODO **/
+		return "";
+	}
+	
+	/**
+	 * This method when invoked from a AdministratorClient will return the number of players online and off-line
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return Confirmation in form of a string
+	 */
+	public String getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress)
+	{
+		/** TODO **/
+		return "";
+	}
+	
+	/**
+	 * This method when invoked from a AdministratorClient will suspend the player account given
+	 * @param pAdminUsername by default all administrators have username "Admin"
+	 * @param pAdminPassword by default all administrators have password "Admin"
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @param pUsernameToSuspend a minimum length of 6 characters and a maximum length of 15 characters
+	 * @return Confirmation in form of a string
+	 */
+	public String suspendAccount(String pAdminUsername, String pAdminPassword, String pIPAddress, String pUsernameToSuspend) 
+	{
+		/** TODO **/
+		return "";
+	}
+	
+	// returns the number of current online players in this server
+	private int getNumberOfOnlinePlayer()
+	{
+		/** TODO **/
+		return 0;
+	}
+	
+	// returns the number of current offline players in this server
+	private int getNumberOfOfflinePlayer()
+	{
+		/** TODO **/
+		return 0;
+	}
+	
+	// Returns the account with the given pUsername, returns null if pUsername does not exist
+	private Account getAccount(String pUsername)
+	{
+		/** TODO **/
+		return null;
+	}
+	
+	// Checks if the given pUsername exists in the database
+	private boolean IPAddressExists(String pIPAddress)
+	{
+		/** TODO **/
+		return false;
+	}
+	
+	// Checks for the validity of the given pIPAddress
+	private static boolean validate(final String pIPAddress) 
+	{          
+	      Pattern pattern = Pattern.compile(Parameters.PATTERN_FOR_IPADDRESS_VALIDATION);
+	      Matcher matcher = pattern.matcher(pIPAddress);
+	      pattern = null;
+	      return matcher.matches();             
+	}
+}

@@ -1,0 +1,12 @@
+/**
+ * GameServerAS.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package DefaultNamespace;
+
+public interface GameServerAS extends java.rmi.Remote {
+    public java.lang.String createPlayerAccount(java.lang.String pFirstName, java.lang.String pLastName, int pAge, java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException;
+}

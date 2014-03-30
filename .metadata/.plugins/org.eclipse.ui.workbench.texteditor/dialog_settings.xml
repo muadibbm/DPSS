@@ -2,30 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
-		<item value="238" key="DIALOG_Y_ORIGIN"/>
-		<item value="1152" key="DIALOG_X_ORIGIN"/>
+		<item value="469" key="DIALOG_Y_ORIGIN"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
+		<item value="1215" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="aTmpAccount" key="selection"/>
+		<item value="GeoLocationOfGameServerNA" key="selection"/>
 		<list key="findhistory">
-			<item value="aTmpAccount"/>
-			<item value="aUDPThread"/>
-			<item value="aUDPPort"/>
-			<item value="invalid port"/>
-			<item value="invalid"/>
-			<item value="synch"/>
-			<item value="database"/>
-			<item value="aRMIPort"/>
+			<item value="tmpAccount"/>
+			<item value="GeoLocationOfGameServerAS"/>
+			<item value="Parameters.log_AS"/>
+			<item value="substring"/>
+			<item value="Logger"/>
+			<item value="log_AS"/>
+			<item value="NA"/>
+			<item value="database_NA"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Parameters"/>
+			<item value="GeoLocationOfGameServerNA"/>
+			<item value="Parameters.log_NA"/>
+			<item value="Parameters.log_EU"/>
+			<item value="GeoLocationOfGameServerEU"/>
+			<item value="Log"/>
+			<item value="Parameters.log_AS"/>
+			<item value="database"/>
+			<item value="Logger"/>
 		</list>
 	</section>
 </section>

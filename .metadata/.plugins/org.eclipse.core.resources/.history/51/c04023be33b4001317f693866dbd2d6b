@@ -1,0 +1,27 @@
+
+public class StaticLog {
+	
+	public static Logger log;
+	
+	public static void main(String[] args) 
+	{
+		serverName_AS = "AS";
+		createLog(serverName_AS, Parameters.GeoLocationOfGameServerAS);
+		database_AS = new PersistentHashtable("Database_AS");
+		log_AS.info("Database initialized\n" + database_AS.toString());
+	}
+	
+	// Creates the log file for the server
+	private static void createLog()
+	{
+		try {
+			log = Logger.getLogger(pServerName);
+				FileHandler fileHandler = new FileHandler("logger.log");
+				log.addHandler(fileHandler);
+		        SimpleFormatter formatter = new SimpleFormatter();  
+		        fileHandler.setFormatter(formatter); 
+			} catch (SecurityException | IOException e) {
+				log.info("Log File Error: " + e.getMessage());
+			}
+	}
+}

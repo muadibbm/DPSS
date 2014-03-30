@@ -1,0 +1,13 @@
+
+public class Server {
+	
+	public Server()
+	{
+		GameServers.log_AS.info("server called");
+	}
+	
+	public string method (int s, String p)
+	{
+		
+	}
+}

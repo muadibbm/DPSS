@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/servers/GameServerEUService.java=UTF-8
+encoding//src/servers/GameServerNA.java=UTF-8
+encoding//src/servers/GameServerNAService.java=UTF-8
+encoding//src/servers/GameServerNAServiceLocator.java=UTF-8
+encoding//src/servers/GameServerNASoapBindingStub.java=UTF-8

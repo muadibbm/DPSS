@@ -1,0 +1,62 @@
+
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+/** Thread Class that runs the UDP object used by the servers */
+class UDPThread extends Thread
+{
+	private String aServerName;
+	private int aUDPPort;
+	private int aOnline;
+	private int aOffline;
+	private boolean bCrashed;
+	
+	public UDPThread(String pServerName, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aUDPPort = pUDPPort;
+		aOnline = 0;
+		aOffline = 0;
+		bCrashed = false;
+		
+	}
+	
+	public void setNumberOfPlayers(int pOnline, int pOffline)
+	{
+		aOnline = pOnline;
+		aOffline = pOffline;
+	}
+	
+	public void getNumberOfPlayer()
+	{
+		return "
+	}
+	
+	public boolean crashed()
+	{
+		return bCrashed;
+	}
+	
+	public void run()
+	{
+		try {
+			DatagramSocket datagramSocket = new DatagramSocket(aUDPPort);
+			byte [] buffer = new byte [1000];
+			DatagramPacket request;
+			DatagramPacket reply;
+			while(true)
+			{
+				request = new DatagramPacket(buffer, buffer.length);
+				datagramSocket.receive(request);
+				buffer = (aServerName + ": " + aOnline + " online, " + aOffline + " offline. ").getBytes();
+				reply = new DatagramPacket(buffer, buffer.length, request.getAddress(), request.getPort());
+				datagramSocket.send(reply);
+			}
+		} catch (IOException e) {
+			System.out.println("IOException : " + e.getMessage());
+			bCrashed = true;
+		}
+	}
+}

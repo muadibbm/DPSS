@@ -1,0 +1,281 @@
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import system.Account;
+import system.Parameters;
+
+public class GameServerAS2 
+{
+	public GameServerAS2()
+	{
+		GameServers.log_AS.info("GameServerAS2 init");
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will create a player account with the given parameters
+	 * and returns the confirmation
+	 * @param pFirstName
+	 * @param pLastName
+	 * @param pAge
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	public String createPlayerAccount(String pFirstName, String pLastName, int pAge, 
+            String pUsername, String pPassword, String pIPAddress) 
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if(pAge <= 0)
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Invalid Age");
+				return "Error Creating Player Account : Invalid Age";
+			}
+			if(pUsername.length() < 6)
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Username has to be at least 6 characters");
+				return "Error Creating Player Account : Username has to be at least 6 characters";
+			}
+			if(pUsername.length() > 15)
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Username has to be at most 15 characters");
+				return "Error Creating Player Account : Username has to be at most 15 characters";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Username cannot start with " + pUsername.charAt(0));
+				return "Error Creating Player Account : Username cannot start with " + pUsername.charAt(0);
+			}
+			if(getAccount(pUsername) != null)
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Username " + pUsername + " Already Exists");
+				return "Error Creating Player Account : Username " + pUsername + " Already Exists";
+			}
+			if(pPassword.length() < 6)
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Password has to be at least 6 characters");
+				return "Error Creating Player Account : Password has to be at least 6 characters";
+			}
+			if(!validate(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Invalid IP-address");
+				return "Error Creating Player Account : Invalid IP-address";
+			}
+			if(IPAddressExists(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Creating Player Account : IP-address Already Exists");
+				return "Error Creating Player Account : IP-address Already Exists";
+			}
+			GameServers.database_AS.put(String.valueOf(pUsername.toUpperCase().charAt(0)), new Account(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress));
+			GameServers.log_AS.info("Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+					"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" +
+					pIPAddress + "\", Player is currently Offline");
+			return "Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+					"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" +
+					pIPAddress + "\", Player is currently Offline";
+		}
+		catch(NullPointerException e)
+		{
+			GameServers.log_AS.info("Error Creating Player Account : Missing Parameter");
+			return "Error Creating Player Account : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			GameServers.log_AS.info("Error Creating Player Account : Invalid Age");
+			return "Error Creating Player Account : Invalid Age";
+		}
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will set a player online if conditions are met 
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pPassword a minimum length of 6 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	public String playerSignIn(String pUsername, String pPassword, String pIPAddress)
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				GameServers.log_AS.info("Error Player Sign in : Username cannot start with " + pUsername.charAt(0));
+				return "Error Player Sign in : Username cannot start with " + pUsername.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsername);
+			if(tmpAccount == null)
+			{
+				GameServers.log_AS.info("Error Player Sign in : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Player Sign in : Username Was Not Found";
+			}
+			if(!tmpAccount.getPassword().equals(pPassword))
+			{
+				GameServers.log_AS.info("Error Player Sign in : Incorrect Password");
+				tmpAccount = null;
+				return "Error Player Sign in : Incorrect Password";
+			}
+			if(!validate(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Player Sign in : Invalid IP-address");
+				tmpAccount = null;
+				return "Error Player Sign in : Invalid IP-address";
+			}
+			if(!tmpAccount.getIPAddress().equals(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Player Sign in : Nonmatching IP-address");
+				tmpAccount = null;
+				return "Error Player Sign in : Nonmatching IP-address";
+			}
+			if(!tmpAccount.isOnline())
+			{
+				GameServers.database_AS.setOnline(true, pUsername);
+				tmpAccount = null;
+				GameServers.log_AS.info("Player Sign in : Player " +  pUsername + " Is Now Online");
+				return "Player Sign in : Player " +  pUsername + " Is Now Online";
+			}
+			else
+			{
+				GameServers.log_AS.info("Error Player Sign in : Player " + pUsername + " Is Already Online");
+				tmpAccount = null;
+				return "Error Player Sign in : Player " + pUsername + " Is Already Online";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			GameServers.log_AS.info("Error Player Sign in : Missing Parameter");
+			return "Error Player Sign in : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			GameServers.log_AS.info("Error Player Sign in : Invalid Age");
+			return "Error Player Sign in : Invalid Age";
+		}
+	}
+	
+	/**
+	 * This method when invoked from a PlayerClient will set this player off-line if conditions are met
+	 * with the given parameters and returns the confirmation
+	 * @param pUsername a minimum length of 6 characters and a maximum length of 15 characters
+	 * @param pIPAddress 132.xxx.xxx.xxx for NA, 93.xxx.xxx.xxx for EU, 182.xxx.xxx.xxx for AS
+	 * @return confirmation in form of a string
+	 */
+	public String playerSignOut(String pUsername, String pIPAddress) 
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				GameServers.log_AS.info("Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				GameServers.log_AS.info("Error Player Sign out : Username cannot start with " + pUsername.charAt(0));
+				return "Error Player Sign out : Username cannot start with " + pUsername.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsername);
+			if(tmpAccount == null)
+			{
+				GameServers.log_AS.info("Error Player Sign out : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Player Sign out : Username Was Not Found";
+			}
+			if(!validate(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Player Sign out : Invalid IP-address");
+				tmpAccount = null;
+				return "Error Player Sign out : Invalid IP-address";
+			}
+			if(!tmpAccount.getIPAddress().equals(pIPAddress))
+			{
+				GameServers.log_AS.info("Error Player Sign out : Nonmatching IP-address");
+				tmpAccount = null;
+				return "Error Player Sign out : Nonmatching IP-address";
+			}
+			if(tmpAccount.isOnline())
+			{
+				GameServers.database_AS.setOnline(false, pUsername);
+				tmpAccount = null;
+				GameServers.log_AS.info("Player Sign out : Player " +  pUsername + " Is Now Offline");
+				return "Player Sign out : Player " +  pUsername + " Is Now Offline";
+			}
+			else
+			{
+				GameServers.log_AS.info("Error Player Sign out : Player " + pUsername + " Is Already Offline");
+				tmpAccount = null;
+				return "Error Player Sign out : Player " + pUsername + " Is Already Offline";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			GameServers.log_AS.info("Error Player Sign out : Missing Parameter");
+			return "Error Player Sign out : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			GameServers.log_AS.info("Error Player Sign out : Invalid Age");
+			return "Error Player Sign out : Invalid Age";
+		}
+	}
+	
+	// Returns the account with the given pUsername, returns null if pUsername does not exist
+	private Account getAccount(String pUsername)
+	{
+		String tmpUpperCaseUsername = pUsername.toUpperCase();
+		List <Account> tmpList = GameServers.database_AS.get(String.valueOf(tmpUpperCaseUsername.charAt(0)));
+		for (int index = 0; index < tmpList.size(); index++)
+		{
+			if(tmpList.get(index).getUserName().equals(pUsername))
+			{
+				tmpUpperCaseUsername = null;
+				return tmpList.get(index);
+			}
+		}
+		tmpUpperCaseUsername = null;
+		tmpList = null;
+		return null;
+	}
+	
+	// Checks if the given pUsername exists in the GameServers.database_AS
+	private boolean IPAddressExists(String pIPAddress)
+	{
+		List <Account> tmpList;
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			tmpList = GameServers.database_AS.get(alphabet+"");
+			for (int index = 0; index < tmpList.size(); index++)
+			{
+				if(tmpList.get(index).getIPAddress().equals(pIPAddress))
+				{
+					tmpList = null;
+					return true;
+				}
+			}
+		}
+		tmpList = null;
+		return false;
+	}
+	
+	// Checks for the validity of the given pIPAddress
+	private static boolean validate(final String pIPAddress) 
+	{          
+	      Pattern pattern = Pattern.compile(Parameters.PATTERN_FOR_IPADDRESS_VALIDATION);
+	      Matcher matcher = pattern.matcher(pIPAddress);
+	      pattern = null;
+	      return matcher.matches();             
+	}
+}

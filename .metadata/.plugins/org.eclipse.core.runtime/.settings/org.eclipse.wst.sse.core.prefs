@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-task-tag-projects-already-scanned=DistributedPlayerStatusSystem(RMI),DistrubutedPlayerStatusSystem(IDL)
+task-tag-projects-already-scanned=DistributedPlayerStatusSystem(RMI),DistrubutedPlayerStatusSystem(IDL),DistributedPlayerStatusSystem_WebService,Servers

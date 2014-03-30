@@ -1,0 +1,5 @@
+Mar 26, 2014 11:04:58 PM system.Log info
+INFO: Error Creating Player Account : Invalid IP-address
+Mar 26, 2014 11:09:04 PM system.Log info
+INFO: Player Account created :
+FirstName "F", LastName "D", Age "1", Username "user10", Password "123456", IP-address "132.1.1.1", Player is currently Offline

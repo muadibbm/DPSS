@@ -1,0 +1,92 @@
+package servers;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.util.Scanner;
+
+/** Thread Class that runs the UDP object used by the servers */
+class UDPThread extends Thread
+{
+	private String aServerName;
+	private int aUDPPort;
+	private DatagramSocket datagramSocket;
+	private byte [] buffer;
+	private DatagramPacket request;
+	private DatagramPacket reply;
+	private int requestType;
+	private String message;
+	private String messageNumber;
+	
+	private boolean bCrashed;
+	
+	private GameServer aServerObject;
+	
+	private Scanner scanner;
+	private int j;
+	private String [] accountDetail;
+	
+	public UDPThread(String pServerName, GameServer pServerObject, int pUDPPort)
+	{
+		aServerName = pServerName;
+		aServerObject = pServerObject;
+		aUDPPort = pUDPPort;
+		buffer = new byte [1000];
+		bCrashed = false;
+		accountDetail = new String [7];
+	}
+	
+	public boolean crashed()
+	{
+		return bCrashed;
+	}
+	
+	public void run()
+	{
+		try {
+			datagramSocket = new DatagramSocket(aUDPPort);
+			while(true)
+			{	
+				// Listen for requests (1 = GetPlayerStatus & 2 = TransferAccount)
+				request = new DatagramPacket(buffer, buffer.length);
+				datagramSocket.receive(request);
+				message = new String(request.getData());
+				System.out.println(message);
+  				messageNumber = message.substring(0,1);
+  				requestType = Integer.parseInt(messageNumber);
+				
+				if(requestType == 1) // Get Player Status
+				{
+					buffer = (aServerName + ": " + aServerObject.getNumberOfOnlinePlayer() + " online, " + aServerObject.getNumberOfOfflinePlayer() + " offline. ").getBytes();
+					reply = new DatagramPacket(buffer, buffer.length, request.getAddress(), request.getPort());
+					datagramSocket.send(reply);
+				}
+				else if(requestType == 2) // Transfer Account
+				{
+					scanner = new Scanner(new String(request.getData()));
+					scanner.useDelimiter("- ");
+					scanner.next(); //skip the requestType
+					j = 0;
+					while(scanner.hasNext())
+					{
+						accountDetail[j] = scanner.next();
+						System.out.println(accountDetail[j]);
+						j++;
+					}
+					scanner.close();
+					aServerObject.createPlayerAccount(accountDetail[0], accountDetail[1], Integer.parseInt(accountDetail[2]), accountDetail[3], accountDetail[4], accountDetail[5]);
+				}
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("NumberFormatException : " + e.getMessage());
+			bCrashed = true;
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("UnsupportedEncodingException : " + e.getMessage());
+			bCrashed = true;
+		} catch (IOException e) {
+			System.out.println("IOException : " + e.getMessage());
+			bCrashed = true;
+		}
+	}
+}

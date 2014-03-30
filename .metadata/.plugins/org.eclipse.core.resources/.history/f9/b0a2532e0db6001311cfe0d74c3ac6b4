@@ -1,0 +1,40 @@
+package system;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+/*
+ * Logger class handles the log file
+ * @author Mehrdad Dehdashti
+ */
+public class Log 
+{
+	public static void info(String pFileName, String pInfo)
+	{
+		Logger aLog = Logger.getLogger(pFileName);
+		FileHandler aFileHandler = null;
+		File aFile;
+		try 
+		{
+			aFile = new File(pFileName);
+			if (aFile.exists())
+				aFileHandler = new FileHandler(pFileName, true);
+			else
+				aFileHandler = new FileHandler(pFileName);
+			aLog.addHandler(aFileHandler);
+			SimpleFormatter aFormatter = new SimpleFormatter();
+			aFileHandler.setFormatter(aFormatter);
+			aLog.info(pInfo);
+		} catch (IOException e) {
+			aLog.info("IOException:" + e.getMessage());
+		} catch (SecurityException e) {
+			aLog.info("SecurityException: " + e.getMessage());
+		} finally {
+			if(aFileHandler != null)
+				aFileHandler.close();
+		}
+	}
+}

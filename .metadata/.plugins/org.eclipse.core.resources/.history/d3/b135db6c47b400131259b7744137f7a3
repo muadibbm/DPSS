@@ -1,0 +1,173 @@
+<%@page contentType="text/html;charset=UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<HTML>
+<HEAD>
+<TITLE>Result</TITLE>
+</HEAD>
+<BODY>
+<H1>Result</H1>
+
+<jsp:useBean id="sampleGameServerASProxyid" scope="session" class="DefaultNamespace.GameServerASProxy" />
+<%
+if (request.getParameter("endpoint") != null && request.getParameter("endpoint").length() > 0)
+sampleGameServerASProxyid.setEndpoint(request.getParameter("endpoint"));
+%>
+
+<%
+String method = request.getParameter("method");
+int methodID = 0;
+if (method == null) methodID = -1;
+
+if(methodID != -1) methodID = Integer.parseInt(method);
+boolean gotMethod = false;
+
+try {
+switch (methodID){ 
+case 2:
+        gotMethod = true;
+        java.lang.String getEndpoint2mtemp = sampleGameServerASProxyid.getEndpoint();
+if(getEndpoint2mtemp == null){
+%>
+<%=getEndpoint2mtemp %>
+<%
+}else{
+        String tempResultreturnp3 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getEndpoint2mtemp));
+        %>
+        <%= tempResultreturnp3 %>
+        <%
+}
+break;
+case 5:
+        gotMethod = true;
+        String endpoint_0id=  request.getParameter("endpoint8");
+            java.lang.String endpoint_0idTemp = null;
+        if(!endpoint_0id.equals("")){
+         endpoint_0idTemp  = endpoint_0id;
+        }
+        sampleGameServerASProxyid.setEndpoint(endpoint_0idTemp);
+break;
+case 10:
+        gotMethod = true;
+        DefaultNamespace.GameServerAS getGameServerAS10mtemp = sampleGameServerASProxyid.getGameServerAS();
+if(getGameServerAS10mtemp == null){
+%>
+<%=getGameServerAS10mtemp %>
+<%
+}else{
+        if(getGameServerAS10mtemp!= null){
+        String tempreturnp11 = getGameServerAS10mtemp.toString();
+        %>
+        <%=tempreturnp11%>
+        <%
+        }}
+break;
+case 13:
+        gotMethod = true;
+        String pUsername_1id=  request.getParameter("pUsername16");
+            java.lang.String pUsername_1idTemp = null;
+        if(!pUsername_1id.equals("")){
+         pUsername_1idTemp  = pUsername_1id;
+        }
+        String pIPAddress_2id=  request.getParameter("pIPAddress18");
+            java.lang.String pIPAddress_2idTemp = null;
+        if(!pIPAddress_2id.equals("")){
+         pIPAddress_2idTemp  = pIPAddress_2id;
+        }
+        java.lang.String playerSignOut13mtemp = sampleGameServerASProxyid.playerSignOut(pUsername_1idTemp,pIPAddress_2idTemp);
+if(playerSignOut13mtemp == null){
+%>
+<%=playerSignOut13mtemp %>
+<%
+}else{
+        String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(playerSignOut13mtemp));
+        %>
+        <%= tempResultreturnp14 %>
+        <%
+}
+break;
+case 20:
+        gotMethod = true;
+        String pUsername_3id=  request.getParameter("pUsername23");
+            java.lang.String pUsername_3idTemp = null;
+        if(!pUsername_3id.equals("")){
+         pUsername_3idTemp  = pUsername_3id;
+        }
+        String pPassword_4id=  request.getParameter("pPassword25");
+            java.lang.String pPassword_4idTemp = null;
+        if(!pPassword_4id.equals("")){
+         pPassword_4idTemp  = pPassword_4id;
+        }
+        String pIPAddress_5id=  request.getParameter("pIPAddress27");
+            java.lang.String pIPAddress_5idTemp = null;
+        if(!pIPAddress_5id.equals("")){
+         pIPAddress_5idTemp  = pIPAddress_5id;
+        }
+        java.lang.String playerSignIn20mtemp = sampleGameServerASProxyid.playerSignIn(pUsername_3idTemp,pPassword_4idTemp,pIPAddress_5idTemp);
+if(playerSignIn20mtemp == null){
+%>
+<%=playerSignIn20mtemp %>
+<%
+}else{
+        String tempResultreturnp21 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(playerSignIn20mtemp));
+        %>
+        <%= tempResultreturnp21 %>
+        <%
+}
+break;
+case 29:
+        gotMethod = true;
+        String pFirstName_6id=  request.getParameter("pFirstName32");
+            java.lang.String pFirstName_6idTemp = null;
+        if(!pFirstName_6id.equals("")){
+         pFirstName_6idTemp  = pFirstName_6id;
+        }
+        String pLastName_7id=  request.getParameter("pLastName34");
+            java.lang.String pLastName_7idTemp = null;
+        if(!pLastName_7id.equals("")){
+         pLastName_7idTemp  = pLastName_7id;
+        }
+        String pAge_8id=  request.getParameter("pAge36");
+        int pAge_8idTemp  = Integer.parseInt(pAge_8id);
+        String pUsername_9id=  request.getParameter("pUsername38");
+            java.lang.String pUsername_9idTemp = null;
+        if(!pUsername_9id.equals("")){
+         pUsername_9idTemp  = pUsername_9id;
+        }
+        String pPassword_10id=  request.getParameter("pPassword40");
+            java.lang.String pPassword_10idTemp = null;
+        if(!pPassword_10id.equals("")){
+         pPassword_10idTemp  = pPassword_10id;
+        }
+        String pIPAddress_11id=  request.getParameter("pIPAddress42");
+            java.lang.String pIPAddress_11idTemp = null;
+        if(!pIPAddress_11id.equals("")){
+         pIPAddress_11idTemp  = pIPAddress_11id;
+        }
+        java.lang.String createPlayerAccount29mtemp = sampleGameServerASProxyid.createPlayerAccount(pFirstName_6idTemp,pLastName_7idTemp,pAge_8idTemp,pUsername_9idTemp,pPassword_10idTemp,pIPAddress_11idTemp);
+if(createPlayerAccount29mtemp == null){
+%>
+<%=createPlayerAccount29mtemp %>
+<%
+}else{
+        String tempResultreturnp30 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(createPlayerAccount29mtemp));
+        %>
+        <%= tempResultreturnp30 %>
+        <%
+}
+break;
+}
+} catch (Exception e) { 
+%>
+Exception: <%= org.eclipse.jst.ws.util.JspUtils.markup(e.toString()) %>
+Message: <%= org.eclipse.jst.ws.util.JspUtils.markup(e.getMessage()) %>
+<%
+return;
+}
+if(!gotMethod){
+%>
+result: N/A
+<%
+}
+%>
+</BODY>
+</HTML>

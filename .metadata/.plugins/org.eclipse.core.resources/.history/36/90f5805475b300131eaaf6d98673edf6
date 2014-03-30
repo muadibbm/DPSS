@@ -1,0 +1,16 @@
+/**
+ * GameServerEUService.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package servers;
+
+public interface GameServerEUService extends javax.xml.rpc.Service {
+    public java.lang.String getGameServerEUAddress();
+
+    public servers.GameServerEU getGameServerEU() throws javax.xml.rpc.ServiceException;
+
+    public servers.GameServerEU getGameServerEU(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+}

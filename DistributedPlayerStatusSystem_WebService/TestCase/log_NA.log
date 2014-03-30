@@ -1,0 +1,17 @@
+Mar 27, 2014 8:10:37 PM system.Log info
+INFO: Player Account created :
+FirstName "John", LastName "Smith", Age "20", Username "user20", Password "123456", IP-address "132.1.1.1", Player is currently Offline
+Mar 27, 2014 8:10:49 PM system.Log info
+INFO: Get Player Status : NA: 0 online, 1 offline. 
+EU: 0 online, 0 offline.
+AS: 0 online, 0 offline.
+Mar 27, 2014 8:11:08 PM system.Log info
+INFO: Player Account Deleted :
+Username "user20", Password "123456", IP-address "132.1.1.1"
+Mar 27, 2014 8:11:08 PM system.Log info
+INFO: Player Account Transferred :
+Username "user20", Password "123456", IP-address "93.1.1.1"
+Mar 27, 2014 8:11:28 PM system.Log info
+INFO: Get Player Status : NA: 0 online, 0 offline. 
+EU: 0 online, 1 offline.
+AS: 0 online, 0 offline.

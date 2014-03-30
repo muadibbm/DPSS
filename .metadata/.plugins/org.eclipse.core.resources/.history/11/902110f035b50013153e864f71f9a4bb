@@ -1,0 +1,567 @@
+package servers;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import system.Account;
+import system.Log;
+import system.Parameters;
+import system.PersistentHashtable;
+
+public class GameServerAS extends GameServer
+{	
+	private PersistentHashtable database;
+	
+	public GameServerAS()
+	{
+		database = new PersistentHashtable(Parameters.database_AS);
+	}
+	
+	public String createPlayerAccount(String pFirstName, String pLastName, int pAge, 
+            String pUsername, String pPassword, String pIPAddress)
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if(pAge <= 0)
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid Age");
+				return "Error Creating Player Account : Invalid Age";
+			}
+			if(pUsername.length() < 6)
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Username has to be at least 6 characters");
+				return "Error Creating Player Account : Username has to be at least 6 characters";
+			}
+			if(pUsername.length() > 15)
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Username has to be at most 15 characters");
+				return "Error Creating Player Account : Username has to be at most 15 characters";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Username cannot start with " + pUsername.charAt(0));
+				return "Error Creating Player Account : Username cannot start with " + pUsername.charAt(0);
+			}
+			if(getAccount(pUsername) != null)
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Username " + pUsername + " Already Exists");
+				return "Error Creating Player Account : Username " + pUsername + " Already Exists";
+			}
+			if(pPassword.length() < 6)
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Password has to be at least 6 characters");
+				return "Error Creating Player Account : Password has to be at least 6 characters";
+			}
+			if(!validate(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid IP-address");
+				return "Error Creating Player Account : Invalid IP-address";
+			}
+			if(IPAddressExists(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : IP-address Already Exists");
+				return "Error Creating Player Account : IP-address Already Exists";
+			}
+			database.put(String.valueOf(pUsername.toUpperCase().charAt(0)), new Account(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress));
+			Log.info(Parameters.log_AS, "Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+					"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" +
+					pIPAddress + "\", Player is currently Offline");
+			return "Player Account created :\nFirstName \"" +  pFirstName +  "\", LastName \"" +  pLastName + 
+					"\", Age \"" +  pAge +  "\", Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" +
+					pIPAddress + "\", Player is currently Offline";
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Creating Player Account : Missing Parameter");
+			return "Error Creating Player Account : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid Age");
+			return "Error Creating Player Account : Invalid Age";
+		}
+	}
+	
+	public String playerSignIn(String pUsername, String pPassword, String pIPAddress)
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Username cannot start with " + pUsername.charAt(0));
+				return "Error Player Sign in : Username cannot start with " + pUsername.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsername);
+			if(tmpAccount == null)
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Player Sign in : Username Was Not Found";
+			}
+			if(!tmpAccount.getPassword().equals(pPassword))
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Incorrect Password");
+				tmpAccount = null;
+				return "Error Player Sign in : Incorrect Password";
+			}
+			if(!validate(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Invalid IP-address");
+				tmpAccount = null;
+				return "Error Player Sign in : Invalid IP-address";
+			}
+			if(!tmpAccount.getIPAddress().equals(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Nonmatching IP-address");
+				tmpAccount = null;
+				return "Error Player Sign in : Nonmatching IP-address";
+			}
+			if(!tmpAccount.isOnline())
+			{
+				database.setOnline(true, pUsername);
+				tmpAccount = null;
+				Log.info(Parameters.log_AS, "Player Sign in : Player " +  pUsername + " Is Now Online");
+				return "Player Sign in : Player " +  pUsername + " Is Now Online";
+			}
+			else
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign in : Player " + pUsername + " Is Already Online");
+				tmpAccount = null;
+				return "Error Player Sign in : Player " + pUsername + " Is Already Online";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Player Sign in : Missing Parameter");
+			return "Error Player Sign in : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Player Sign in : Invalid Age");
+			return "Error Player Sign in : Invalid Age";
+		}
+	}
+	
+	public String playerSignOut(String pUsername, String pIPAddress) 
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Creating Player Account : Invalid GeoLocation");
+				return "Error Creating Player Account : Invalid GeoLocation";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign out : Username cannot start with " + pUsername.charAt(0));
+				return "Error Player Sign out : Username cannot start with " + pUsername.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsername);
+			if(tmpAccount == null)
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign out : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Player Sign out : Username Was Not Found";
+			}
+			if(!validate(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign out : Invalid IP-address");
+				tmpAccount = null;
+				return "Error Player Sign out : Invalid IP-address";
+			}
+			if(!tmpAccount.getIPAddress().equals(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign out : Nonmatching IP-address");
+				tmpAccount = null;
+				return "Error Player Sign out : Nonmatching IP-address";
+			}
+			if(tmpAccount.isOnline())
+			{
+				database.setOnline(false, pUsername);
+				tmpAccount = null;
+				Log.info(Parameters.log_AS, "Player Sign out : Player " +  pUsername + " Is Now Offline");
+				return "Player Sign out : Player " +  pUsername + " Is Now Offline";
+			}
+			else
+			{
+				Log.info(Parameters.log_AS, "Error Player Sign out : Player " + pUsername + " Is Already Offline");
+				tmpAccount = null;
+				return "Error Player Sign out : Player " + pUsername + " Is Already Offline";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Player Sign out : Missing Parameter");
+			return "Error Player Sign out : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Player Sign out : Invalid Age");
+			return "Error Player Sign out : Invalid Age";
+		}
+	}
+	
+	public String transferAccount(String pUsername, String pPassword, String pOldIPAddress, String pNewIPAddress) 
+	{
+		try
+		{
+			if(pOldIPAddress.length() < 3 || !pOldIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Invalid GeoLocation");
+				return "Error Transferring Account : Invalid GeoLocation";
+			}
+			if((pUsername.charAt(0) > 'Z' && pUsername.charAt(0) < 'a') || pUsername.charAt(0) < 'A' || pUsername.charAt(0) > 'z')
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Username cannot start with " + pUsername.charAt(0));
+				return "Error Transferring Account : Username cannot start with " + pUsername.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsername);
+			if(tmpAccount == null)
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Transferring Account : Username Was Not Found";
+			}
+			if(!tmpAccount.getPassword().equals(pPassword))
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Incorrect Password");
+				tmpAccount = null;
+				return "Error Transferring Account : Incorrect Password";
+			}
+			if(!validate(pOldIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Invalid IP-address");
+				tmpAccount = null;
+				return "Error Transferring Account : Invalid IP-address";
+			}
+			if(!tmpAccount.getIPAddress().equals(pOldIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Nonmatching IP-address");
+				tmpAccount = null;
+				return "Error Transferring Account : Nonmatching IP-address";
+			}
+			if(!validate(pNewIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : Invalid New IP-address");
+				tmpAccount = null;
+				return "Error Transferring Account : Invalid New IP-address";
+			}
+
+			boolean bSuccessRemoval = false;
+			synchronized(this)
+			{
+				bSuccessRemoval = database.remove(pUsername);
+				if(bSuccessRemoval)
+				{
+					Log.info(Parameters.log_AS, "Player Account Deleted :\nUsername \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pOldIPAddress + "\"");
+					
+					DatagramSocket datagramSocket;
+					DatagramPacket requestToTransfer;
+					byte [] message;
+					String data = "transferAccount";
+					InetAddress host;
+					
+					if(pNewIPAddress.length() >= 3 && pNewIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerNA))
+					{
+						try 
+						{
+							datagramSocket = new DatagramSocket();
+							host = InetAddress.getByName("localhost");
+							
+							data = data + "-" + tmpAccount.getFirstName() + "-" + tmpAccount.getLastName() + "-" + Integer.toString(tmpAccount.getAge())
+									 	+ "-" + pUsername + "-" + pPassword + "-" + pNewIPAddress;
+							
+							message = data.getBytes();
+							requestToTransfer = new DatagramPacket(message, data.length(), host, Parameters.UDPportNA);
+							datagramSocket.send(requestToTransfer);
+							
+						} catch (SocketException e) {
+							System.out.println("SocketException : " + e.getMessage());
+						} catch (IOException e) {
+							System.out.println("IOException : " + e.getMessage());
+						}
+					}
+					else if(pNewIPAddress.length() >= 2 && pNewIPAddress.substring(0,2).equals(Parameters.GeoLocationOfGameServerEU))
+					{
+						try 
+						{
+							datagramSocket = new DatagramSocket();
+							host = InetAddress.getByName("localhost");
+							
+							data = data + "-" + tmpAccount.getFirstName() + "-" + tmpAccount.getLastName() + "-" + Integer.toString(tmpAccount.getAge())
+									 	+ "-" + pUsername + "-" + pPassword + "-" + pNewIPAddress;
+							
+							message = data.getBytes();
+							requestToTransfer = new DatagramPacket(message, data.length(), host, Parameters.UDPportEU);
+							datagramSocket.send(requestToTransfer);
+							
+						} catch (SocketException e) {
+							System.out.println("SocketException : " + e.getMessage());
+						} catch (IOException e) {
+							System.out.println("IOException : " + e.getMessage());
+						}
+					}
+					else
+					{
+						Log.info(Parameters.log_AS, "Error Transferring Account : Invalid GeoLocation");
+						return "Error Transferring Account : Invalid GeoLocation";
+					}
+				}
+			}		
+			if(bSuccessRemoval)
+			{
+				Log.info(Parameters.log_AS, "Player Account Transferred :\nUsername \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pNewIPAddress + "\"");
+				return "Player Account Transferred : Username \"" +  pUsername +  "\", Password \"" + pPassword + "\", IP-address \"" + pNewIPAddress + "\"\n" +
+				tmpAccount.getFirstName() + "\n" + 
+				tmpAccount.getLastName() + "\n" + 
+				Integer.toString(tmpAccount.getAge());
+			}
+			else
+			{
+				Log.info(Parameters.log_AS, "Error Transferring Account : removal faild");
+				return "ERROR_TRANSFER_ACCOUNT";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Transferring Account : Missing Parameter");
+			return "Error Transferring Account : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Transferring Account : Invalid Age");
+			return "Error Transferring Account : Invalid Age";
+		}
+	}
+	
+	public String getPlayerStatus(String pAdminUsername, String pAdminPassword, String pIPAddress)
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Getting Player Status : Invalid GeoLocation");
+				return "Error Getting Player Status : Invalid GeoLocation";
+			}
+			if(!pAdminUsername.equals("Admin"))
+			{
+				Log.info(Parameters.log_AS, "Error Getting Player Status : Incorrect Administrator Username");
+				return "Error Getting Player Status : Incorrect Administrator Username";
+			}
+			if(!pAdminPassword.equals("Admin"))
+			{
+				Log.info(Parameters.log_AS, "Error Getting Player Status : Incorrect Administrator Password");
+				return "Error Getting Player Status : Incorrect Administrator Password";
+			}
+			if(!validate(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Getting Player Status : Invalid IP-address");
+				return "Error Getting Player Status : Invalid IP-address";
+			}
+			
+			DatagramSocket datagramSocket;
+			DatagramPacket requestToGetPlayerStatus;
+			byte [] message;
+			String data = "getPlayerStatus";
+			InetAddress host;
+			DatagramPacket reply;
+			String repliedMessage1;
+			String repliedMessage2;
+			
+			try 
+			{
+				datagramSocket = new DatagramSocket();
+				host = InetAddress.getByName("localhost");
+				
+				message = data.getBytes();
+				requestToGetPlayerStatus = new DatagramPacket(message, data.length(), host, Parameters.UDPportEU);
+				datagramSocket.send(requestToGetPlayerStatus);
+				
+				message = new byte [1000];
+				reply = new DatagramPacket(message, message.length);
+				datagramSocket.receive(reply);
+				repliedMessage1 = reply.getData().toString();
+				
+				requestToGetPlayerStatus = new DatagramPacket(message, data.length(), host, Parameters.UDPportEU);
+				datagramSocket.send(requestToGetPlayerStatus);
+				
+				Log.info(Parameters.log_AS, "Get Player Status : " + Parameters.serverName_AS + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
+						" offline. \n" + repliedMessage1 + "\n" + repliedMessage2);
+				return "Get Player Status : " + Parameters.serverName_AS + ": " + getNumberOfOnlinePlayer() + " online, " + getNumberOfOfflinePlayer() + 
+						" offline. \n" + repliedMessage1 + "\n" + repliedMessage2;
+				} catch (SocketException e) {
+					System.out.println("SocketException : " + e.getMessage());
+				} catch (IOException e) {
+					System.out.println("IOException : " + e.getMessage());
+				}
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Getting Player Status : Missing Parameter");
+			return "Error Getting Player Status : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Transferring Account : Invalid Age");
+			return "Error Getting Player Status : Invalid Age";
+		}
+		Log.info(Parameters.log_AS, "Error Getting Player Status : Socket Excpetion");
+		return "Error Getting Player Status : Socket Excpetion";
+	}
+	
+	public String suspendAccount(String pAdminUsername, String pAdminPassword, String pIPAddress, String pUsernameToSuspend) 
+	{
+		try
+		{
+			if(pIPAddress.length() < 3 || !pIPAddress.substring(0,3).equals(Parameters.GeoLocationOfGameServerAS))
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Invalid GeoLocation");
+				return "Error Suspending Account : Invalid GeoLocation";
+			}
+			if(!pAdminUsername.equals("Admin"))
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Incorrect Administrator Username");
+				return "Error Suspending Account : Incorrect Administrator Username";
+			}
+			if(!pAdminPassword.equals("Admin"))
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Incorrect Administrator Password");
+				return "Error Suspending Account : Incorrect Administrator Password";
+			}
+			if(!validate(pIPAddress))
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Invalid IP-address");
+				return "Error Suspending Account : Invalid IP-address";
+			}
+			if((pUsernameToSuspend.charAt(0) > 'Z' && pUsernameToSuspend.charAt(0) < 'a') || pUsernameToSuspend.charAt(0) < 'A' || pUsernameToSuspend.charAt(0) > 'z')
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0));
+				return "Error Suspending Account : Username cannot start with " + pUsernameToSuspend.charAt(0);
+			}
+			Account tmpAccount = getAccount(pUsernameToSuspend);
+			if(tmpAccount == null)
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : Username Was Not Found");
+				tmpAccount = null;
+				return "Error Suspending Account : Username Was Not Found";
+			}
+			
+			boolean bSuccess = false;
+			synchronized(this)
+			{
+				bSuccess = database.remove(pUsernameToSuspend);
+			}
+			if(bSuccess)
+			{
+				Log.info(Parameters.log_AS, "Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"");
+				return "Player Account suspended :\nUsername \"" +  pUsernameToSuspend +  "\", Password \"" + tmpAccount.getPassword() + "\", IP-address \"" + tmpAccount.getIPAddress() + "\"\n";
+			}
+			else
+			{
+				Log.info(Parameters.log_AS, "Error Suspending Account : suspension faild");
+				return "Error Suspending Account : suspension faild";
+			}
+		}
+		catch(NullPointerException e)
+		{
+			Log.info(Parameters.log_AS, "Error Suspending Account : Missing Parameter");
+			return "Error Transferring Account : Missing Parameter";
+		}
+		catch(NumberFormatException e)
+		{
+			Log.info(Parameters.log_AS, "Error Suspending Account : Invalid Age");
+			return "Error Transferring Account : Invalid Age";
+		}
+	}
+	
+	// returns the number of current online players in this server
+	public int getNumberOfOnlinePlayer()
+	{
+		List <Account> tmpList;
+		int numberOfOnlinePlayers = 0;
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			tmpList = database.get(alphabet+"");
+			for (int index = 0; index < tmpList.size(); index++)
+				if(tmpList.get(index).isOnline())
+					numberOfOnlinePlayers++;
+		}
+		return numberOfOnlinePlayers;
+	}
+	// returns the number of current offline players in this server
+	public int getNumberOfOfflinePlayer()
+	{
+		List <Account> tmpList;
+		int numberOfOfflinePlayers = 0;
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			tmpList = database.get(alphabet+"");
+			for (int index = 0; index < tmpList.size(); index++)
+				if(!tmpList.get(index).isOnline())
+					numberOfOfflinePlayers++;
+		}
+		return numberOfOfflinePlayers;
+	}
+	
+	// Returns the account with the given pUsername, returns null if pUsername does not exist
+	private Account getAccount(String pUsername)
+	{
+		String tmpUpperCaseUsername = pUsername.toUpperCase();
+		List <Account> tmpList = database.get(String.valueOf(tmpUpperCaseUsername.charAt(0)));
+		for (int index = 0; index < tmpList.size(); index++)
+		{
+			if(tmpList.get(index).getUserName().equals(pUsername))
+			{
+				tmpUpperCaseUsername = null;
+				return tmpList.get(index);
+			}
+		}
+		tmpUpperCaseUsername = null;
+		tmpList = null;
+		return null;
+	}
+	
+	// Checks if the given pUsername exists in the GameServers.database_AS
+	private boolean IPAddressExists(String pIPAddress)
+	{
+		List <Account> tmpList;
+		for(char alphabet = 'A'; alphabet <= 'Z'; alphabet++)
+		{
+			tmpList = database.get(alphabet+"");
+			for (int index = 0; index < tmpList.size(); index++)
+			{
+				if(tmpList.get(index).getIPAddress().equals(pIPAddress))
+				{
+					tmpList = null;
+					return true;
+				}
+			}
+		}
+		tmpList = null;
+		return false;
+	}
+	
+	// Checks for the validity of the given pIPAddress
+	private static boolean validate(final String pIPAddress) 
+	{          
+	      Pattern pattern = Pattern.compile(Parameters.PATTERN_FOR_IPADDRESS_VALIDATION);
+	      Matcher matcher = pattern.matcher(pIPAddress);
+	      pattern = null;
+	      return matcher.matches();             
+	}
+}

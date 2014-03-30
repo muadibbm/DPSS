@@ -1,0 +1,13 @@
+Mar 25, 2014 1:50:03 AM GameServerAS createLog
+INFO: Log file created for GameServer AS
+To connect to this server, the clients have to aquire IP address in form of 182.xxx.xxx.xxx
+Mar 25, 2014 1:50:03 AM GameServerAS <init>
+INFO: Database initialized
+#A,#B,#C,#D,#E,#F,#G,#H,#I,#J,#K,#L,#M,#N,#O,#P,#Q,#R,#S,#T,#U,#V,#W,#X,#Y,#Z
+Mar 25, 2014 1:50:03 AM GameServerAS createPlayerAccount
+INFO: Player Account created :
+FirstName "David", LastName "Tesla", Age "24", Username "muadibbm", Password "password", IP-address "182.192.1.0", Player is currently Offline
+Mar 25, 2014 1:50:03 AM GameServerAS playerSignIn
+INFO: Player Sign in : Player muadibbm Is Now Online
+Mar 25, 2014 1:50:03 AM GameServerAS playerSignOut
+INFO: Player Sign out : Player muadibbm Is Now Offline

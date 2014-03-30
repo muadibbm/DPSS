@@ -1,0 +1,26 @@
+package system;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
+public class PersistentHashtable 
+{
+	private String aFileName;
+	private PrintWriter aPrintWriter;
+	private FileOutputStream aOut;
+	private FileInputStream aIn;
+	
+	public PersistentHashtable (String pFileName)
+	{
+		aFileName = pFileName;
+		try {
+			aOut = new FileOutputStream(aFileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		aPrintWriter = new PrintWriter(aOut);
+	}
+}

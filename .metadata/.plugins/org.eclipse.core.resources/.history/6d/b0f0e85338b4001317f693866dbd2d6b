@@ -1,0 +1,98 @@
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import system.*;
+
+public class GameServers {
+
+	public static String serverName_AS = "AS";
+	public static String serverName_EU;
+	public static String serverName_NA;
+	
+	public static PersistentHashtable database_AS = new PersistentHashtable("Database_AS");
+	public static PersistentHashtable database_EU = new PersistentHashtable("Database_EU");
+	public static PersistentHashtable database_NA = new PersistentHashtable("Database_NA");
+	
+	public static Logger log_AS = Logger.getLogger("Database_AS");
+	public static Logger log_EU = Logger.getLogger("Database_EU");
+	public static Logger log_NA = Logger.getLogger("Database_NA");
+	
+	public static void main(String[] args) 
+	{
+		serverName_AS = "AS";
+		createLog(serverName_AS, Parameters.GeoLocationOfGameServerAS);
+		log_AS.info("Database initialized\n" + database_AS.toString());
+		serverName_EU = "EU";
+		createLog(serverName_EU, Parameters.GeoLocationOfGameServerEU);
+		log_EU.info("Database initialized\n" + database_EU.toString());
+		serverName_NA = "NA";
+		createLog(serverName_NA, Parameters.GeoLocationOfGameServerNA);
+		log_NA.info("Database initialized\n" + database_NA.toString());
+	}
+	
+	// Creates the log file for the server
+	private static void createLog(String pServerName, String pGeoLocation)
+	{
+		if(pServerName.equals(serverName_AS))
+		{
+			try {
+				FileHandler fileHandler = new FileHandler(pServerName+".log");
+				log_AS.addHandler(fileHandler);
+		        SimpleFormatter formatter = new SimpleFormatter();  
+		        fileHandler.setFormatter(formatter);  
+		        log_AS.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_AS.info("Log File Error: " + e.getMessage());
+			}
+		}
+		else if(pServerName.equals(serverName_EU))
+		{
+			try {
+				log_EU = Logger.getLogger(pServerName);
+				FileHandler fileHandler = new FileHandler(pServerName+".log");
+				log_EU.addHandler(fileHandler);
+		        SimpleFormatter formatter = new SimpleFormatter();  
+		        fileHandler.setFormatter(formatter);  
+		        log_EU.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_EU.info("Log File Error: " + e.getMessage());
+			}
+		}
+		else if(pServerName.equals(serverName_NA))
+		{
+			try {
+				log_NA = Logger.getLogger(pServerName);
+				FileHandler fileHandler = new FileHandler(pServerName+".log");
+				log_NA.addHandler(fileHandler);
+		        SimpleFormatter formatter = new SimpleFormatter();  
+		        fileHandler.setFormatter(formatter);  
+		        log_NA.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_NA.info("Log File Error: " + e.getMessage());
+			}
+		}
+	}
+	
+	/** Create the UDP and checks if the UDP thread crashes so it would replace it with a new UDP thread */
+	/*private void run()
+	{
+		aUDPThread = new UDPThread(aServerName, aUDPPort);
+		aUDPThread.start();
+		log.info("UDP Running");
+		while(true)
+		{
+			if(aUDPThread.crashed())
+			{
+				aUDPThread = new UDPThread(aServerName, aUDPPort);
+				aUDPThread.start();
+			}
+			aUDPThread.setNumberOfPlayers(this.getNumberOfOnlinePlayer(), getNumberOfOfflinePlayer());
+		}
+	}*/
+
+}

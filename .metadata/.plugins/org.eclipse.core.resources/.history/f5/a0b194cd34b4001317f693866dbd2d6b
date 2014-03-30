@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="createPlayerAccount">
+    <complexType>
+     <sequence>
+      <element name="xxx" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createPlayerAccountResponse">
+    <complexType>
+     <sequence>
+      <element name="createPlayerAccountReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="createPlayerAccountResponse">
+
+      <wsdl:part element="impl:createPlayerAccountResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createPlayerAccountRequest">
+
+      <wsdl:part element="impl:createPlayerAccount" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Server">
+
+      <wsdl:operation name="createPlayerAccount">
+
+         <wsdl:input message="impl:createPlayerAccountRequest" name="createPlayerAccountRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createPlayerAccountResponse" name="createPlayerAccountResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServerSoapBinding" type="impl:Server">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="createPlayerAccount">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createPlayerAccountRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createPlayerAccountResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServerService">
+
+      <wsdl:port binding="impl:ServerSoapBinding" name="Server">
+
+         <wsdlsoap:address location="http://localhost:8080/DistributedPlayerStatusSystem%28WebService%29/services/Server"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

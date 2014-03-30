@@ -1,0 +1,29 @@
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+
+public class StaticLog {
+	
+	public static Logger log;
+	
+	public static void main(String[] args) 
+	{
+		createLog();
+	}
+	
+	// Creates the log file for the server
+	private static void createLog()
+	{
+		try {
+			log = Logger.getLogger("logger");
+			FileHandler fileHandler = new FileHandler("logger.log");
+			log.addHandler(fileHandler);
+		    SimpleFormatter formatter = new SimpleFormatter();  
+		    fileHandler.setFormatter(formatter); 
+		} catch (SecurityException | IOException e) {
+			log.info("Log File Error: " + e.getMessage());
+		}
+	}
+}

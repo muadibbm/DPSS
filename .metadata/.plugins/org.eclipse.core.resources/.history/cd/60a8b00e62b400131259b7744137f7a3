@@ -1,0 +1,84 @@
+package DefaultNamespace;
+
+public class GameServerAS9Proxy implements DefaultNamespace.GameServerAS9 {
+  private String _endpoint = null;
+  private DefaultNamespace.GameServerAS9 gameServerAS9 = null;
+  
+  public GameServerAS9Proxy() {
+    _initGameServerAS9Proxy();
+  }
+  
+  public GameServerAS9Proxy(String endpoint) {
+    _endpoint = endpoint;
+    _initGameServerAS9Proxy();
+  }
+  
+  private void _initGameServerAS9Proxy() {
+    try {
+      gameServerAS9 = (new DefaultNamespace.GameServerAS9ServiceLocator()).getGameServerAS9();
+      if (gameServerAS9 != null) {
+        if (_endpoint != null)
+          ((javax.xml.rpc.Stub)gameServerAS9)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+        else
+          _endpoint = (String)((javax.xml.rpc.Stub)gameServerAS9)._getProperty("javax.xml.rpc.service.endpoint.address");
+      }
+      
+    }
+    catch (javax.xml.rpc.ServiceException serviceException) {}
+  }
+  
+  public String getEndpoint() {
+    return _endpoint;
+  }
+  
+  public void setEndpoint(String endpoint) {
+    _endpoint = endpoint;
+    if (gameServerAS9 != null)
+      ((javax.xml.rpc.Stub)gameServerAS9)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+    
+  }
+  
+  public DefaultNamespace.GameServerAS9 getGameServerAS9() {
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9;
+  }
+  
+  public java.lang.String playerSignOut(java.lang.String pUsername, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.playerSignOut(pUsername, pIPAddress);
+  }
+  
+  public java.lang.String playerSignIn(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.playerSignIn(pUsername, pPassword, pIPAddress);
+  }
+  
+  public java.lang.String transferAccount(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pOldIPAddress, java.lang.String pNewIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.transferAccount(pUsername, pPassword, pOldIPAddress, pNewIPAddress);
+  }
+  
+  public java.lang.String getPlayerStatus(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress);
+  }
+  
+  public java.lang.String suspendAccount(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress, java.lang.String pUsernameToSuspend) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.suspendAccount(pAdminUsername, pAdminPassword, pIPAddress, pUsernameToSuspend);
+  }
+  
+  public java.lang.String createPlayerAccount(java.lang.String pFirstName, java.lang.String pLastName, int pAge, java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS9 == null)
+      _initGameServerAS9Proxy();
+    return gameServerAS9.createPlayerAccount(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress);
+  }
+  
+  
+}

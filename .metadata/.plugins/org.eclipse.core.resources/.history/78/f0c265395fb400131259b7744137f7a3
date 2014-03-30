@@ -1,0 +1,123 @@
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import system.*;
+
+public class GameServers {
+
+	public static String serverName_AS = "AS";
+	public static String serverName_EU = "EU";
+	public static String serverName_NA = "NA";
+	
+	public static PersistentHashtable database_AS = new PersistentHashtable("Database_"+serverName_AS);
+	public static PersistentHashtable database_EU = new PersistentHashtable("Database_"+serverName_EU);
+	public static PersistentHashtable database_NA = new PersistentHashtable("Database_"+serverName_NA);
+	
+	public static final Logger log_AS = Logger.getLogger(serverName_AS);
+	public static final Logger log_EU = Logger.getLogger(serverName_EU);
+	public static final Logger log_NA = Logger.getLogger(serverName_NA);
+	
+	private static FileHandler fileHandler_AS;
+	private static SimpleFormatter formatter_AS;
+	private static FileHandler fileHandler_EU;
+	private static SimpleFormatter formatter_EU;
+	private static FileHandler fileHandler_NA;
+	private static SimpleFormatter formatter_NA;
+	
+	public static UDPThread UDPThread_AS = new UDPThread(serverName_AS, Parameters.UDPportAS);
+	public static UDPThread UDPThread_EU = new UDPThread(serverName_EU, Parameters.UDPportEU);
+	public static UDPThread UDPThread_NA = new UDPThread(serverName_NA, Parameters.UDPportNA);
+	
+	public static void main(String[] args) 
+	{
+		createLog(serverName_AS, Parameters.GeoLocationOfGameServerAS);
+		log_AS.info("Database initialized\n" + database_AS.toString());
+		UDPThread_AS.start();
+		log_AS.info("UDPThread_AS Running");
+		
+		createLog(serverName_EU, Parameters.GeoLocationOfGameServerEU);
+		log_EU.info("Database initialized\n" + database_EU.toString());
+		UDPThread_EU.start();
+		log_EU.info("UDPThread_EU Running");
+		
+		createLog(serverName_NA, Parameters.GeoLocationOfGameServerNA);
+		log_NA.info("Database initialized\n" + database_NA.toString());
+		UDPThread_NA.start();
+		log_NA.info("UDPThread_NA Running");
+		
+		runUDP();
+	}
+	
+	// Creates the log file for the server
+	private static void createLog(String pServerName, String pGeoLocation)
+	{
+		if(pServerName.equals(serverName_AS))
+		{
+			try {
+				fileHandler_AS = new FileHandler(pServerName+".log");
+				log_AS.addHandler(fileHandler_AS);
+				formatter_AS = new SimpleFormatter();  
+		        fileHandler_AS.setFormatter(formatter_AS);  
+		        log_AS.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_AS.info("Log File Error: " + e.getMessage());
+			}
+		}
+		else if(pServerName.equals(serverName_EU))
+		{
+			try {
+				fileHandler_EU = new FileHandler(pServerName+".log");
+				log_EU.addHandler(fileHandler_EU);
+				formatter_EU = new SimpleFormatter();  
+				fileHandler_EU.setFormatter(formatter_EU);  
+		        log_EU.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_EU.info("Log File Error: " + e.getMessage());
+			}
+		}
+		else if(pServerName.equals(serverName_NA))
+		{
+			try {
+				FileHandler fileHandler = new FileHandler(pServerName+".log");
+				log_NA.addHandler(fileHandler);
+		        SimpleFormatter formatter = new SimpleFormatter();  
+		        fileHandler.setFormatter(formatter);  
+		        log_NA.info("Log file created for GameServer " + pServerName +
+		        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+			} catch (SecurityException | IOException e) {
+				log_NA.info("Log File Error: " + e.getMessage());
+			}
+		}
+	}
+	
+	/** Create the UDP and checks if the UDP thread crashes so it would replace it with a new UDP thread */
+	private static void runUDP()
+	{
+		while(true)
+		{
+			if(UDPThread_AS.crashed())
+			{
+				UDPThread_AS = new UDPThread(serverName_AS, Parameters.UDPportAS);
+				UDPThread_AS.start();
+				log_AS.info(UDPThread_AS.getNumberOfPlayer());
+			}
+			if(UDPThread_EU.crashed())
+			{
+				UDPThread_EU = new UDPThread(serverName_EU, Parameters.UDPportEU);
+				UDPThread_EU.start();
+				log_EU.info(UDPThread_AS.getNumberOfPlayer());
+			}
+			if(UDPThread_NA.crashed())
+			{
+				UDPThread_NA = new UDPThread(serverName_NA, Parameters.UDPportNA);
+				UDPThread_NA.start();
+				log_AS.info(UDPThread_AS.getNumberOfPlayer());
+			}
+		}
+	}
+
+}

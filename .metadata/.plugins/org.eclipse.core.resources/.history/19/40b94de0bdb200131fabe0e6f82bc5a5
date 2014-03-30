@@ -1,0 +1,20 @@
+package system;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
+public class PersistentHashtable 
+{
+	private String aFileName;
+	private PrintWriter aPrintWriter;
+	private FileOutputStream aOut;
+	private FileInputStream aIn;
+	
+	public PersistentHashtable (String pFileName)
+	{
+		aFileName = pFileName;
+		aOut = new FileOutputStream(aFileName);
+		aPrintWriter = PrintWriter(aOut);
+	}
+}

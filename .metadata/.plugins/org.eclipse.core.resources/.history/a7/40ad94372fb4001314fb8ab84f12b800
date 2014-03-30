@@ -1,0 +1,71 @@
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
+import system.*;
+
+public class GameServers {
+
+	public static String serverName_AS;
+	public static String serverName_EU;
+	public static String serverName_NA;
+	
+	public static PersistentHashtable database_AS;
+	public static PersistentHashtable database_EU;
+	public static PersistentHashtable database_NA;
+	
+	public static Logger log_AS;
+	public static Logger log_EU;
+	public static Logger log_NA;
+	
+	public static void main(String[] args) 
+	{
+		serverName_AS = "AS";
+		serverName_EU = "EU";
+		serverName_NA = "NA";
+		createLog(serverName_AS, log_AS, Parameters.GeoLocationOfGameServerAS);
+		createLog(serverName_EU, log_EU, Parameters.GeoLocationOfGameServerEU);
+		createLog(serverName_NA, log_NA, Parameters.GeoLocationOfGameServerNA);
+		atabase = new PersistentHashtable(pDatabaseName);
+		log_AS.info("Database initialized\n" + database.toString());
+		atabase = new PersistentHashtable(pDatabaseName);
+		log_EU.info("Database initialized\n" + database.toString());
+		database_NA = new PersistentHashtable(");
+		log_NA.info("Database initialized\n" + database_NA.toString());
+	}
+	
+	// Creates the log file for the server
+	private static void createLog(String pServerName, Logger pLogRef, String pGeoLocation)
+	{
+		try {
+			pLogRef = Logger.getLogger(pServerName);
+			FileHandler fileHandler = new FileHandler(pServerName+".log");
+			pLogRef.addHandler(fileHandler);
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fileHandler.setFormatter(formatter);  
+	        pLogRef.info("Log file created for GameServer " + pServerName +
+	        		 "\nTo connect to this server, the clients have to aquire IP address in form of " + pGeoLocation + ".xxx.xxx.xxx");
+		} catch (SecurityException | IOException e) {
+			pLogRef.info("Log File Error: " + e.getMessage());
+		}
+	}
+	
+	/** Create the UDP and checks if the UDP thread crashes so it would replace it with a new UDP thread */
+	/*private void run()
+	{
+		aUDPThread = new UDPThread(aServerName, aUDPPort);
+		aUDPThread.start();
+		log.info("UDP Running");
+		while(true)
+		{
+			if(aUDPThread.crashed())
+			{
+				aUDPThread = new UDPThread(aServerName, aUDPPort);
+				aUDPThread.start();
+			}
+			aUDPThread.setNumberOfPlayers(this.getNumberOfOnlinePlayer(), getNumberOfOfflinePlayer());
+		}
+	}
+
+}

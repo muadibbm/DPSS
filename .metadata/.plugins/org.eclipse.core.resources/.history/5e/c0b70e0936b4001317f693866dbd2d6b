@@ -1,0 +1,21 @@
+
+public class Server 
+{
+	public Server ()
+	{
+		System.out.println("Server Called");
+		StaticServer.log.info("Server Called");
+	}
+	
+	public String createPlayerAccount(String xxx)
+	{
+		StaticServer.log.info(xxx + "123");
+		return xxx + "123";
+	}
+	
+	public static void main(String[] args) 
+	{
+		StaticServer.log.info("initServer");
+	}
+	
+}

@@ -1,0 +1,84 @@
+package DefaultNamespace;
+
+public class ServerTestProxy implements DefaultNamespace.ServerTest {
+  private String _endpoint = null;
+  private DefaultNamespace.ServerTest serverTest = null;
+  
+  public ServerTestProxy() {
+    _initServerTestProxy();
+  }
+  
+  public ServerTestProxy(String endpoint) {
+    _endpoint = endpoint;
+    _initServerTestProxy();
+  }
+  
+  private void _initServerTestProxy() {
+    try {
+      serverTest = (new DefaultNamespace.ServerTestServiceLocator()).getserverTest();
+      if (serverTest != null) {
+        if (_endpoint != null)
+          ((javax.xml.rpc.Stub)serverTest)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+        else
+          _endpoint = (String)((javax.xml.rpc.Stub)serverTest)._getProperty("javax.xml.rpc.service.endpoint.address");
+      }
+      
+    }
+    catch (javax.xml.rpc.ServiceException serviceException) {}
+  }
+  
+  public String getEndpoint() {
+    return _endpoint;
+  }
+  
+  public void setEndpoint(String endpoint) {
+    _endpoint = endpoint;
+    if (serverTest != null)
+      ((javax.xml.rpc.Stub)serverTest)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+    
+  }
+  
+  public DefaultNamespace.ServerTest getServerTest() {
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest;
+  }
+  
+  public java.lang.String playerSignOut(java.lang.String pUsername, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.playerSignOut(pUsername, pIPAddress);
+  }
+  
+  public java.lang.String playerSignIn(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.playerSignIn(pUsername, pPassword, pIPAddress);
+  }
+  
+  public java.lang.String transferAccount(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pOldIPAddress, java.lang.String pNewIPAddress) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.transferAccount(pUsername, pPassword, pOldIPAddress, pNewIPAddress);
+  }
+  
+  public java.lang.String getPlayerStatus(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.getPlayerStatus(pAdminUsername, pAdminPassword, pIPAddress);
+  }
+  
+  public java.lang.String suspendAccount(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress, java.lang.String pUsernameToSuspend) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.suspendAccount(pAdminUsername, pAdminPassword, pIPAddress, pUsernameToSuspend);
+  }
+  
+  public java.lang.String createPlayerAccount(java.lang.String pFirstName, java.lang.String pLastName, int pAge, java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (serverTest == null)
+      _initServerTestProxy();
+    return serverTest.createPlayerAccount(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress);
+  }
+  
+  
+}

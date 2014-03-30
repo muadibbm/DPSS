@@ -1,0 +1,54 @@
+package DefaultNamespace;
+
+public class ServersProxy implements DefaultNamespace.Servers {
+  private String _endpoint = null;
+  private DefaultNamespace.Servers servers = null;
+  
+  public ServersProxy() {
+    _initServersProxy();
+  }
+  
+  public ServersProxy(String endpoint) {
+    _endpoint = endpoint;
+    _initServersProxy();
+  }
+  
+  private void _initServersProxy() {
+    try {
+      servers = (new DefaultNamespace.ServersServiceLocator()).getServers();
+      if (servers != null) {
+        if (_endpoint != null)
+          ((javax.xml.rpc.Stub)servers)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+        else
+          _endpoint = (String)((javax.xml.rpc.Stub)servers)._getProperty("javax.xml.rpc.service.endpoint.address");
+      }
+      
+    }
+    catch (javax.xml.rpc.ServiceException serviceException) {}
+  }
+  
+  public String getEndpoint() {
+    return _endpoint;
+  }
+  
+  public void setEndpoint(String endpoint) {
+    _endpoint = endpoint;
+    if (servers != null)
+      ((javax.xml.rpc.Stub)servers)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+    
+  }
+  
+  public DefaultNamespace.Servers getServers() {
+    if (servers == null)
+      _initServersProxy();
+    return servers;
+  }
+  
+  public java.lang.String method(int s, java.lang.String p) throws java.rmi.RemoteException{
+    if (servers == null)
+      _initServersProxy();
+    return servers.method(s, p);
+  }
+  
+  
+}

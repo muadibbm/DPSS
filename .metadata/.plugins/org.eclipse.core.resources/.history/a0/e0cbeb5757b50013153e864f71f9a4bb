@@ -1,0 +1,19 @@
+/**
+ * GameServerNA.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package servers;
+
+public interface GameServerNA extends java.rmi.Remote {
+    public java.lang.String transferAccount(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pOldIPAddress, java.lang.String pNewIPAddress) throws java.rmi.RemoteException;
+    public java.lang.String playerSignOut(java.lang.String pUsername, java.lang.String pIPAddress) throws java.rmi.RemoteException;
+    public java.lang.String createPlayerAccount(java.lang.String pFirstName, java.lang.String pLastName, int pAge, java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException;
+    public java.lang.String getPlayerStatus(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException;
+    public int getNumberOfOnlinePlayer() throws java.rmi.RemoteException;
+    public int getNumberOfOfflinePlayer() throws java.rmi.RemoteException;
+    public java.lang.String suspendAccount(java.lang.String pAdminUsername, java.lang.String pAdminPassword, java.lang.String pIPAddress, java.lang.String pUsernameToSuspend) throws java.rmi.RemoteException;
+    public java.lang.String playerSignIn(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException;
+}

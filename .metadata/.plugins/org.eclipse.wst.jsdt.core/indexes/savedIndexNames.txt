@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+C:\Users\muadibbm\workspace\DPSS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4242305002.index
+2147107341.index
+3106117954.index
+174630594.index
+1352408407.index

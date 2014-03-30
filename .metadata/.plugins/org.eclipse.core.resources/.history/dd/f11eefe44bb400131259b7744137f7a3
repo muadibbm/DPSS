@@ -1,0 +1,66 @@
+package DefaultNamespace;
+
+public class GameServerAS2Proxy implements DefaultNamespace.GameServerAS2 {
+  private String _endpoint = null;
+  private DefaultNamespace.GameServerAS2 gameServerAS2 = null;
+  
+  public GameServerAS2Proxy() {
+    _initGameServerAS2Proxy();
+  }
+  
+  public GameServerAS2Proxy(String endpoint) {
+    _endpoint = endpoint;
+    _initGameServerAS2Proxy();
+  }
+  
+  private void _initGameServerAS2Proxy() {
+    try {
+      gameServerAS2 = (new DefaultNamespace.GameServerAS2ServiceLocator()).getGameServerAS2();
+      if (gameServerAS2 != null) {
+        if (_endpoint != null)
+          ((javax.xml.rpc.Stub)gameServerAS2)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+        else
+          _endpoint = (String)((javax.xml.rpc.Stub)gameServerAS2)._getProperty("javax.xml.rpc.service.endpoint.address");
+      }
+      
+    }
+    catch (javax.xml.rpc.ServiceException serviceException) {}
+  }
+  
+  public String getEndpoint() {
+    return _endpoint;
+  }
+  
+  public void setEndpoint(String endpoint) {
+    _endpoint = endpoint;
+    if (gameServerAS2 != null)
+      ((javax.xml.rpc.Stub)gameServerAS2)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
+    
+  }
+  
+  public DefaultNamespace.GameServerAS2 getGameServerAS2() {
+    if (gameServerAS2 == null)
+      _initGameServerAS2Proxy();
+    return gameServerAS2;
+  }
+  
+  public java.lang.String playerSignOut(java.lang.String pUsername, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS2 == null)
+      _initGameServerAS2Proxy();
+    return gameServerAS2.playerSignOut(pUsername, pIPAddress);
+  }
+  
+  public java.lang.String playerSignIn(java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS2 == null)
+      _initGameServerAS2Proxy();
+    return gameServerAS2.playerSignIn(pUsername, pPassword, pIPAddress);
+  }
+  
+  public java.lang.String createPlayerAccount(java.lang.String pFirstName, java.lang.String pLastName, int pAge, java.lang.String pUsername, java.lang.String pPassword, java.lang.String pIPAddress) throws java.rmi.RemoteException{
+    if (gameServerAS2 == null)
+      _initGameServerAS2Proxy();
+    return gameServerAS2.createPlayerAccount(pFirstName, pLastName, pAge, pUsername, pPassword, pIPAddress);
+  }
+  
+  
+}
