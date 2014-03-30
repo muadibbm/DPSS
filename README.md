@@ -25,3 +25,7 @@ The same implementation is kept but instead of RMI, the system implements CORBA 
 communication between clients and servers. There is also changes that have been added to improve concurrency and
 efficiency as a distributed system.
 
+DPSS using Web Service
+----------------------
+
+The same implementation is kept but instead of RMI, the system implements the methods as Web Services.
